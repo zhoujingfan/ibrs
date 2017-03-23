@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buptsse.ibrs.dao.UserAndEnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.UserAndEnterprise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="enterprise" property="enterprise" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="if_leave" property="ifLeave" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, enterprise, date, if_leave
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_user_enterprise
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cn_user_enterprise
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
+    insert into cn_user_enterprise (id, userid, enterprise, 
+      date, if_leave)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{enterprise,jdbcType=INTEGER}, 
+      #{date,jdbcType=DATE}, #{ifLeave,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
+    insert into cn_user_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="enterprise != null" >
+        enterprise,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="ifLeave != null" >
+        if_leave,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="enterprise != null" >
+        #{enterprise,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="ifLeave != null" >
+        #{ifLeave,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
+    update cn_user_enterprise
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="enterprise != null" >
+        enterprise = #{enterprise,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="ifLeave != null" >
+        if_leave = #{ifLeave,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
+    update cn_user_enterprise
+    set userid = #{userid,jdbcType=INTEGER},
+      enterprise = #{enterprise,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE},
+      if_leave = #{ifLeave,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

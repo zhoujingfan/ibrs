@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buptsse.ibrs.dao.EnterpriseDao" >
+  <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.Enterprise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+    <result column="enterprise_number" property="enterpriseNumber" jdbcType="VARCHAR" />
+    <result column="enterprise_address" property="enterpriseAddress" jdbcType="VARCHAR" />
+    <result column="certigier" property="certigier" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, enterprise_name, enterprise_number, enterprise_address, certigier, date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_enterprise
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cn_enterprise
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.buptsse.ibrs.model.Enterprise" >
+    insert into cn_enterprise (id, enterprise_name, enterprise_number, 
+      enterprise_address, certigier, date
+      )
+    values (#{id,jdbcType=INTEGER}, #{enterpriseName,jdbcType=VARCHAR}, #{enterpriseNumber,jdbcType=VARCHAR}, 
+      #{enterpriseAddress,jdbcType=VARCHAR}, #{certigier,jdbcType=INTEGER}, #{date,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.Enterprise" >
+    insert into cn_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name,
+      </if>
+      <if test="enterpriseNumber != null" >
+        enterprise_number,
+      </if>
+      <if test="enterpriseAddress != null" >
+        enterprise_address,
+      </if>
+      <if test="certigier != null" >
+        certigier,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseName != null" >
+        #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseNumber != null" >
+        #{enterpriseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseAddress != null" >
+        #{enterpriseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="certigier != null" >
+        #{certigier,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.buptsse.ibrs.model.Enterprise" >
+    update cn_enterprise
+    <set >
+      <if test="enterpriseName != null" >
+        enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseNumber != null" >
+        enterprise_number = #{enterpriseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseAddress != null" >
+        enterprise_address = #{enterpriseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="certigier != null" >
+        certigier = #{certigier,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buptsse.ibrs.model.Enterprise" >
+    update cn_enterprise
+    set enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      enterprise_number = #{enterpriseNumber,jdbcType=VARCHAR},
+      enterprise_address = #{enterpriseAddress,jdbcType=VARCHAR},
+      certigier = #{certigier,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

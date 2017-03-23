@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buptsse.ibrs.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.UserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phonenumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="idcardnumber" property="idcardnumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, truename, birthday, address, phonenumber, email, idcardnumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cn_userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.buptsse.ibrs.model.UserInfo" >
+    insert into cn_userinfo (id, username, truename, 
+      birthday, address, phonenumber, 
+      email, idcardnumber)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{idcardnumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.UserInfo" >
+    insert into cn_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="truename != null" >
+        truename,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phonenumber != null" >
+        phonenumber,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="idcardnumber != null" >
+        idcardnumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null" >
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardnumber != null" >
+        #{idcardnumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.buptsse.ibrs.model.UserInfo" >
+    update cn_userinfo
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null" >
+        truename = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardnumber != null" >
+        idcardnumber = #{idcardnumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buptsse.ibrs.model.UserInfo" >
+    update cn_userinfo
+    set username = #{username,jdbcType=VARCHAR},
+      truename = #{truename,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      idcardnumber = #{idcardnumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

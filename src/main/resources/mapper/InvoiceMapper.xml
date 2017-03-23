@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buptsse.ibrs.dao.InvoiceDao" >
+  <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.Invoice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="invoice_id" property="invoiceId" jdbcType="INTEGER" />
+    <result column="invoice_number" property="invoiceNumber" jdbcType="INTEGER" />
+    <result column="pay_enterprise" property="payEnterprise" jdbcType="VARCHAR" />
+    <result column="tax_number" property="taxNumber" jdbcType="VARCHAR" />
+    <result column="cn_invoicecol" property="cnInvoicecol" jdbcType="INTEGER" />
+    <result column="pay_data" property="payData" jdbcType="DATE" />
+    <result column="payee" property="payee" jdbcType="INTEGER" />
+    <result column="payer" property="payer" jdbcType="INTEGER" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="pay_sum" property="paySum" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="INTEGER"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, invoice_id, invoice_number, password, pay_enterprise, tax_number, cn_invoicecol, pay_data, 
+    payee, payer, details, pay_sum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_invoice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cn_invoice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.buptsse.ibrs.model.Invoice" >
+    insert into cn_invoice (id, invoice_id, invoice_number, password, 
+      pay_enterprise, tax_number, cn_invoicecol, 
+      pay_data, payee, payer, 
+      details, pay_sum)
+    values (#{id,jdbcType=INTEGER}, #{invoiceId,jdbcType=INTEGER}, #{invoiceNumber,jdbcType=INTEGER}, 
+      #{password,jdbcType=INTEGER},
+      #{payEnterprise,jdbcType=VARCHAR}, #{taxNumber,jdbcType=VARCHAR}, #{cnInvoicecol,jdbcType=INTEGER}, 
+      #{payData,jdbcType=DATE}, #{payee,jdbcType=INTEGER}, #{payer,jdbcType=INTEGER}, 
+      #{details,jdbcType=VARCHAR}, #{paySum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.Invoice" >
+    insert into cn_invoice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="invoiceId != null" >
+        invoice_id,
+      </if>
+      <if test="invoiceNumber != null" >
+        invoice_number,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="payEnterprise != null" >
+        pay_enterprise,
+      </if>
+      <if test="taxNumber != null" >
+        tax_number,
+      </if>
+      <if test="cnInvoicecol != null" >
+        cn_invoicecol,
+      </if>
+      <if test="payData != null" >
+        pay_data,
+      </if>
+      <if test="payee != null" >
+        payee,
+      </if>
+      <if test="payer != null" >
+        payer,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+      <if test="paySum != null" >
+        pay_sum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceId != null" >
+        #{invoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceNumber != null" >
+        #{invoiceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=INTEGER},
+      </if>
+      <if test="payEnterprise != null" >
+        #{payEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNumber != null" >
+        #{taxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cnInvoicecol != null" >
+        #{cnInvoicecol,jdbcType=INTEGER},
+      </if>
+      <if test="payData != null" >
+        #{payData,jdbcType=DATE},
+      </if>
+      <if test="payee != null" >
+        #{payee,jdbcType=INTEGER},
+      </if>
+      <if test="payer != null" >
+        #{payer,jdbcType=INTEGER},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="paySum != null" >
+        #{paySum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.buptsse.ibrs.model.Invoice" >
+    update cn_invoice
+    <set >
+      <if test="invoiceId != null" >
+        invoice_id = #{invoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceNumber != null" >
+        invoice_number = #{invoiceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=INTEGER},
+      </if>
+      <if test="payEnterprise != null" >
+        pay_enterprise = #{payEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNumber != null" >
+        tax_number = #{taxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cnInvoicecol != null" >
+        cn_invoicecol = #{cnInvoicecol,jdbcType=INTEGER},
+      </if>
+      <if test="payData != null" >
+        pay_data = #{payData,jdbcType=DATE},
+      </if>
+      <if test="payee != null" >
+        payee = #{payee,jdbcType=INTEGER},
+      </if>
+      <if test="payer != null" >
+        payer = #{payer,jdbcType=INTEGER},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="paySum != null" >
+        pay_sum = #{paySum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buptsse.ibrs.model.Invoice" >
+    update cn_invoice
+    set invoice_id = #{invoiceId,jdbcType=INTEGER},
+      invoice_number = #{invoiceNumber,jdbcType=INTEGER},
+      password = #{password, jdbcType=INTEGER},
+      pay_enterprise = #{payEnterprise,jdbcType=VARCHAR},
+      tax_number = #{taxNumber,jdbcType=VARCHAR},
+      cn_invoicecol = #{cnInvoicecol,jdbcType=INTEGER},
+      pay_data = #{payData,jdbcType=DATE},
+      payee = #{payee,jdbcType=INTEGER},
+      payer = #{payer,jdbcType=INTEGER},
+      details = #{details,jdbcType=VARCHAR},
+      pay_sum = #{paySum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
