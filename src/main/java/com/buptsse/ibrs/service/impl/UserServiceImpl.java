@@ -6,13 +6,15 @@ import org.springframework.stereotype.Service;
 import com.buptsse.ibrs.dao.UserDao;
 import com.buptsse.ibrs.model.User;
 import com.buptsse.ibrs.service.UserService;
-
+import com.buptsse.ibrs.model.UserInfo;
+import com.buptsse.ibrs.dao.UserInfoMapper;
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
-	
+	@Autowired
+	UserInfoMapper userInfoDao;
 	public User getById(int userId) {
 		// TODO Auto-generated method stub
 		return userDao.selectByPrimaryKey(userId);
@@ -27,6 +29,20 @@ public class UserServiceImpl implements UserService {
 	public void AddUser(User user) {
 		// TODO Auto-generated method stub
 		userDao.insert(user);
+	}
+
+	@Override
+	public UserInfo getByPhoneNumber(String number) {
+		// TODO Auto-generated method stub
+		
+		return userInfoDao.selectByPhoneNumber(number);
+	}
+
+	@Override
+	public void SavaUserInfo(UserInfo user) {
+		// TODO Auto-generated method stub
+		userInfoDao.insert(user);
+		
 	}
 
 }

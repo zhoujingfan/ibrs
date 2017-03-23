@@ -58,6 +58,11 @@ body {
 	margin:10px auto;
 	padding-top:20%;
 }
+.form-enterprise{
+	max-width:70%;
+	padding:15px;
+	margin:10px auto;
+}
 
 .form-margin{
 	margin:10px;
@@ -66,4 +71,17 @@ body {
 .form-register{
 	    position: absolute;
 	    padding-left:100px;
+}
+.form-title{
+	margin-top:10px;
+	margin-bottom:10px;
+	border-bottom:1px solid #a7a7a7;
+}
+.mybtn{
+	margin-top:10px;
+	width:150px;
+}
+.font-title{
+	padding:25px 25px 0;
+	font-weight:800;
 }

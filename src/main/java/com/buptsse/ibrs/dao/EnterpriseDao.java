@@ -11,6 +11,7 @@ public interface EnterpriseDao {
 
     Enterprise selectByPrimaryKey(Integer id);
 
+    Enterprise selectByEnterpriseNumbwe(String number);
     int updateByPrimaryKeySelective(Enterprise record);
 
     int updateByPrimaryKey(Enterprise record);

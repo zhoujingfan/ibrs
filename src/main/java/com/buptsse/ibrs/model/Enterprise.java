@@ -13,9 +13,29 @@ public class Enterprise {
 
     private Integer certigier;
 
+    private String password;
+    
     private Date date;
 
-    public Integer getId() {
+    private String licenseNumbwe;
+    
+    public String getLicenseNumbwe() {
+		return licenseNumbwe;
+	}
+
+	public void setLicenseNumbwe(String licenseNumbwe) {
+		this.licenseNumbwe = licenseNumbwe;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Integer getId() {
         return id;
     }
 

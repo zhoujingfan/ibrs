@@ -23,11 +23,12 @@
 			<input class="form-control form-margin" type="text" name="regi_name" placeholder="请输入用户名"/>
 			<label class="sr-only">密码</label>
 			<input class="form-control form-margin" type="password" name="regi_password" placeholder="请输入密码"/>
+			<input class="form-control form-margin" type="password" name="regi_password2" placeholder="请确认密码"/>
 			<div>
 				<input class="btn btn-primary  btn-block form-margin" type="submit" value="立即注册" />
 				
 				<p class="form-margin">
-					<a href="#">我有账号，立即登录</a>
+					<a href="login.jsp">我有账号，立即登录</a>
 				</p>
 			</div>
 		</form>

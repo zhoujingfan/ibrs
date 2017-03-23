@@ -1,6 +1,7 @@
 package com.buptsse.ibrs.service;
 
 import com.buptsse.ibrs.model.User;
+import com.buptsse.ibrs.model.UserInfo;
 
 public interface UserService {
 	/**
@@ -17,4 +18,6 @@ public interface UserService {
 	User getByUsername(String username);
 	void AddUser(User user);
 
+	void SavaUserInfo(UserInfo user);
+	UserInfo getByPhoneNumber(String number);
 }

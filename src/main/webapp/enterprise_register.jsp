@@ -17,19 +17,94 @@
 
 <body>
 	<div class="container">
-		<form action="register" class="form-signin" method="post">
-        	<h4>企业注册</h4>
-			<label class="sr-only">用户名</label>
-			<input class="form-control form-margin" type="text" name="regi_name" placeholder="请输入用户名"/>
-			<label class="sr-only">密码</label>
-			<input class="form-control form-margin" type="password" name="regi_password" placeholder="请输入密码"/>
-			<div>
-				<input class="btn btn-primary  btn-block form-margin" type="submit" value="登录" />
-				<p class="form-margin">
-					<a href="#">忘记密码？</a>
-					<a class="form-register" href="#">新用户注册</a>
-				</p>
+		<form action="register_enterprise" class="mainpad form-group form-enterprise" method="post">
+			<div class="form-title">
+				<h4>企业信息</h4>
 			</div>
+			<div class="form-group row">
+				<label class="col-2 col-form-label">企业名称</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="enterprise_name"
+						id="example-text-input"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-2 col-form-label">企业编号</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="enterprise_number"
+						id="example-search-input"/>
+				</div>
+			</div>
+			
+			
+			<div class="form-group row">
+				<label class="col-2 col-form-label">企业地址</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="enterprise_address"
+						id="example-search-input"/>
+				</div>
+			</div>
+			
+			
+			<div class="form-group row">
+				<label class="col-2 col-form-label">营业执照号码</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="license_number"
+						id="example-search-input">
+				</div>
+			</div>
+			
+				<div class="form-title">
+				<h4>授权人信息</h4>
+			</div>
+			<div class="form-group row">
+				<label class="col-2 col-form-label">姓名</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="certigier_name"
+						id="example-text-input"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-2 col-form-label">身份证号码</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="certigier_id_number"
+						id="example-search-input"/>
+				</div>
+			</div>
+			
+			
+			<div class="form-group row">
+				<label class="col-2 col-form-label">手机号码</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="certigier_phone_number"
+						id="example-search-input"/>
+				</div>
+			</div>
+			
+			
+			<div class="form-group row">
+				<label class="col-2 col-form-label">邮箱</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="certigier_email"
+						id="example-search-input"/>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-2 col-form-label">家庭住址</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="certigier_address"
+						id="example-search-input"/>
+				</div>
+			</div>
+			
+			<div class="form-title"></div>
+			<div class="text-center">
+				<input type="checkbox"><span>确认以上信息，并同意《<a href="protocol.jsp">系统服务协议与隐私政策</a>》</span>
+			</div>
+			<div class="text-center">
+				<button class="mybtn btn btn-primary">注册</button></div>
+			
 		</form>
 	</div>
 </body>

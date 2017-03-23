@@ -30,8 +30,11 @@ public class LoginController {
 	@RequestMapping("/main")
 	private String LoginSubmit(String username, String password, HttpSession session){
 		User user = userService.getByUsername(username);
+		if(user == null){
+			return "login";
+		}
 		
-		if(user.getPassword().equals(password)){
+		else if(user.getPassword().equals(password)){
 			session.setAttribute("username", username);
 			session.setAttribute("user", user);
 			return "main";

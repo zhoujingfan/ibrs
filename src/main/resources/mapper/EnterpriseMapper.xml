@@ -8,9 +8,11 @@
     <result column="enterprise_address" property="enterpriseAddress" jdbcType="VARCHAR" />
     <result column="certigier" property="certigier" jdbcType="INTEGER" />
     <result column="date" property="date" jdbcType="DATE" />
+    <result column="password" property="password" jdbcType="VARCHAR"/>
+    <result column="license_number" property="licenseNumber" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, enterprise_name, enterprise_number, enterprise_address, certigier, date
+    id, enterprise_name, enterprise_number, enterprise_address, certigier, date, password, license_number
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -18,16 +20,25 @@
     from cn_enterprise
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectByEnterpriseNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_enterprise
+    where enterprise_number = #{number,jdbcType=VARCHAR}
+  </select>
+  
+ 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cn_enterprise
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.buptsse.ibrs.model.Enterprise" >
     insert into cn_enterprise (id, enterprise_name, enterprise_number, 
-      enterprise_address, certigier, date
+      enterprise_address, certigier, date,password, license_number
       )
     values (#{id,jdbcType=INTEGER}, #{enterpriseName,jdbcType=VARCHAR}, #{enterpriseNumber,jdbcType=VARCHAR}, 
-      #{enterpriseAddress,jdbcType=VARCHAR}, #{certigier,jdbcType=INTEGER}, #{date,jdbcType=DATE}
+      #{enterpriseAddress,jdbcType=VARCHAR}, #{certigier,jdbcType=INTEGER}, #{date,jdbcType=DATE},
+      #{password, jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.Enterprise" >
@@ -51,6 +62,9 @@
       <if test="date != null" >
         date,
       </if>
+      <if test="password != null" >
+        password,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -70,6 +84,9 @@
       </if>
       <if test="date != null" >
         #{date,jdbcType=DATE},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -91,6 +108,9 @@
       <if test="date != null" >
         date = #{date,jdbcType=DATE},
       </if>
+      <if test="password != null" >
+        date = #{password,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -100,7 +120,8 @@
       enterprise_number = #{enterpriseNumber,jdbcType=VARCHAR},
       enterprise_address = #{enterpriseAddress,jdbcType=VARCHAR},
       certigier = #{certigier,jdbcType=INTEGER},
-      date = #{date,jdbcType=DATE}
+      date = #{date,jdbcType=DATE},
+      password = #{password, jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

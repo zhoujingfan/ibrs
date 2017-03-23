@@ -11,6 +11,8 @@ public interface UserInfoMapper {
 
     UserInfo selectByPrimaryKey(Integer id);
 
+    UserInfo selectByPhoneNumber(String phonenumber);
+    
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
