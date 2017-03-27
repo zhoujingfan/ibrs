@@ -11,6 +11,27 @@
   <sql id="Base_Column_List" >
     id, userid, enterprise, date, if_leave
   </sql>
+  
+  
+  
+  
+  <select id="getMyEnterprise" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_user_enterprise
+    where userid = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <select id="selectByEnterpriseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_user_enterprise
+    where enterprise = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

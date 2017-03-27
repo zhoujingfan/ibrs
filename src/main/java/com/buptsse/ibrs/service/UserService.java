@@ -20,4 +20,8 @@ public interface UserService {
 
 	void SavaUserInfo(UserInfo user);
 	UserInfo getByPhoneNumber(String number);
+	
+	UserInfo getUserInfoById(Integer id);
+	
+	UserInfo getUserInfoByUsername(String Username);
 }

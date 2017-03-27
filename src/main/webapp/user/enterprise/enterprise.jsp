@@ -12,25 +12,38 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="common/js/bootstrap.js"></script>
-<title> ${user.username }的主页</title>
+<title>关联企业</title>
 </head>
 <body>
-	<%@include file="head.jsp"%>
+	<%@include file="../head.jsp"%>
 
-	<div class="container padding-top">
+	<div class="container padding-top-15">
 		<div class="row">
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
-					<a href="#" class="list-group-item">首页</a> <a href="#"
-						class="list-group-item">我的发票</a> <a href="#"
-						class="list-group-item">查看企业</a> <a href="#"
-						class="list-group-item active">交易记录</a> <a href="#"
-						class="list-group-item">呵呵哒</a>
+					<a href="main" class="list-group-item ">首页</a> 
+					<a href="myRecord" class="list-group-item">我的发票</a> 
+					<a href="my_enterprise" class="list-group-item active">查看企业</a> 
+					<a href="myRecord" class="list-group-item">交易记录</a> 
+				
 				</div>
 			</div>
 			<div class="row col-10">
-			
-				
+		
+				<div class="mainpad col-12">
+					
+					<form action="add_success" class="padding-top-15 form-horizontal" method="post">
+						<div class="form-group row">
+							<label class="col-2 col-form-label">企业名称</label>
+							<div class="col-8">
+								<input class="form-control" type="text" name="enterpriseName"/>
+							</div>
+							<div class="col-2">
+								<button class="btn btn-secondary">确认关联</button>
+							</div>
+						</div>
+					</form>
+				</div>
 	
 			</div>
 		</div>

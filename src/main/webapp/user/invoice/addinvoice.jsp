@@ -15,18 +15,17 @@
 <title>添加发票</title>
 </head>
 <body>
-	<%@include file="head.jsp"%>
+	<%@include file="../head.jsp"%>
 
 	<div class="container padding-top-15">
 		<div class="row">
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
-					<a href="#" class="list-group-item">首页</a> <a href="#"
-						class="list-group-item active">我的发票</a> <a href="#"
-						class="list-group-item">查看企业</a> <a href="#"
-						class="list-group-item">交易记录</a> <a href="#"
-						class="list-group-item">呵呵哒</a>
-				</div>
+					<a href="main" class="list-group-item ">首页</a> 
+					<a href="add.jsp" class="list-group-item active">我的发票</a> 
+					<a href="../enterprise/myenterprise.jsp" class="list-group-item">查看企业</a> 
+					<a href="../record.jsp" class="list-group-item">交易记录</a>
+					</div>
 			</div>
 			<div class="row col-10">
 

@@ -21,7 +21,7 @@ public class RegisterController {
 	
 	@Autowired
 	UserService userService;
-	@RequestMapping("/register")
+	@RequestMapping("register")
 	private String Register(String regi_name, String regi_password, HttpSession session){
 		User user = userService.getByUsername(regi_name);
 		if(user != null){
@@ -34,10 +34,14 @@ public class RegisterController {
 			userService.AddUser(user);
 			System.out.println("注册成功");
 		}
-		return "login";
+		return "redirect:../login/login";
 	}
 
-	@RequestMapping("/register_enterprise")
+	@RequestMapping(value={"enterprise"})
+	private String Enterprise(){
+		return "redirect:../register/enterprise_register.jsp";
+	}
+	@RequestMapping("register/enterprise_register")
 	private String EnterpriseRegister(String enterprise_name,
 			String enterprise_number,
 			String enterprise_address,
@@ -63,7 +67,7 @@ public class RegisterController {
 				user.setIdcardnumber(certigier_id_number);
 				user.setPhonenumber(certigier_phone_number);
 				userService.SavaUserInfo(user);
-				userService.getByPhoneNumber(certigier_phone_number);
+				user = userService.getByPhoneNumber(certigier_phone_number);
 			}
 			enterprise = new Enterprise();
 			enterprise.setEnterpriseName(enterprise_name);
@@ -71,8 +75,9 @@ public class RegisterController {
 			enterprise.setEnterpriseAddress(enterprise_address);
 			enterprise.setLicenseNumbwe(license_number);
 			enterprise.setCertigier(user.getId());
+			enterpriseService.saveEnterprise(enterprise);
 		}
 		
-		return "index";
+		return "redirect:../index";
 	}
 }

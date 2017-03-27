@@ -17,14 +17,14 @@ public class Enterprise {
     
     private Date date;
 
-    private String licenseNumbwe;
+    private String licenseNumber;
     
-    public String getLicenseNumbwe() {
-		return licenseNumbwe;
+    public String getLicenseNumber() {
+		return licenseNumber;
 	}
 
 	public void setLicenseNumbwe(String licenseNumbwe) {
-		this.licenseNumbwe = licenseNumbwe;
+		this.licenseNumber = licenseNumbwe;
 	}
 
 	public String getPassword() {

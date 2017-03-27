@@ -21,11 +21,14 @@
 		<div class="row">
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
-					<a href="#" class="list-group-item active">首页</a> <a href="#"
-						class="list-group-item">我的发票</a> <a href="#"
-						class="list-group-item">查看企业</a> <a href="#"
-						class="list-group-item">交易记录</a> <a href="#"
-						class="list-group-item">呵呵哒</a>
+					<a href="main" class="list-group-item active">首页</a> 
+					<a href="myInvoice"
+						class="list-group-item">我的发票</a> 
+					<a href="my_enterprise"
+						class="list-group-item">查看企业</a> 
+					<a href="myRecord"
+						class="list-group-item">交易记录</a>
+						
 				</div>
 			</div>
 			<div class="row col-10">
@@ -37,7 +40,7 @@
 							</div>
 							
 						<div class="padding-top-15">
-							<span><a href="addinvoice.jsp">添加发票</a></span>
+							<span><a href="add_invoice">添加发票</a></span>
 						</div>
 						</div>
 					</div>

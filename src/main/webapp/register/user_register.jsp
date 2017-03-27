@@ -5,13 +5,13 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="common/css/bootstrap.css">
-<link rel="stylesheet" href="common/css/ibrs.css">
-<script src="common/js/jquery-3.1.1.js"></script>
+<link rel="stylesheet" href="../common/css/bootstrap.css">
+<link rel="stylesheet" href="../common/css/ibrs.css">
+<script src="../common/js/jquery-3.1.1.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="common/js/bootstrap.js"></script>
-<title>注册</title>
+<script src="../common/js/bootstrap.js"></script>
+<title>个人用户注册</title>
 </head>
 
 
@@ -28,7 +28,7 @@
 				<input class="btn btn-primary  btn-block form-margin" type="submit" value="立即注册" />
 				
 				<p class="form-margin">
-					<a href="login.jsp">我有账号，立即登录</a>
+					<a href="../login/login.jsp">我有账号，立即登录</a>
 				</p>
 			</div>
 		</form>

@@ -16,10 +16,16 @@ public class LoginController {
 	private UserService userService;
 	
 	@RequestMapping("/login" )
-	private void Login(){
+	private String  Login(){
 		System.out.println("hello world11");
+		return "login";
 	}
-	
+
+	@RequestMapping("/enterprise_login" )
+	private String  EnterpriseLogin(){
+		System.out.println("hello world11");
+		return "login";
+	}
 	/**
 	 * 个人用户登录
 	 * @param username
@@ -27,7 +33,7 @@ public class LoginController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/main")
+	@RequestMapping(value={"login/main"})
 	private String LoginSubmit(String username, String password, HttpSession session){
 		User user = userService.getByUsername(username);
 		if(user == null){
@@ -37,9 +43,14 @@ public class LoginController {
 		else if(user.getPassword().equals(password)){
 			session.setAttribute("username", username);
 			session.setAttribute("user", user);
-			return "main";
+			return "redirect:../main";
 		}else
-			return "login";
+			return "redirect:login";
 	}
-
+	
+	@RequestMapping(value={"main"})
+	private String RequestMain(){
+		return "user/main";
+	}
+	
 }

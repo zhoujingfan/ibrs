@@ -5,19 +5,19 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="common/css/bootstrap.css">
-<link rel="stylesheet" href="common/css/ibrs.css">
-<script src="common/js/jquery-3.1.1.js"></script>
+<link rel="stylesheet" href="../common/css/bootstrap.css">
+<link rel="stylesheet" href="../common/css/ibrs.css">
+<script src="../common/js/jquery-3.1.1.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="common/js/bootstrap.js"></script>
-<title>注册</title>
+<script src="../common/js/bootstrap.js"></script>
+<title>企业用户注册</title>
 </head>
 
 
 <body>
 	<div class="container">
-		<form action="register_enterprise" class="mainpad form-group form-enterprise" method="post">
+		<form action="enterprise_register" class="mainpad form-group form-enterprise" method="post">
 			<div class="form-title">
 				<h4>企业信息</h4>
 			</div>

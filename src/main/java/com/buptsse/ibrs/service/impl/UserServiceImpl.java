@@ -45,4 +45,19 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public UserInfo getUserInfoById(Integer id) {
+		// TODO Auto-generated method stub
+		
+		return userInfoDao.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public UserInfo getUserInfoByUsername(String username) {
+		// TODO Auto-generated method stub
+		User user  = userDao.selectByUsername(username);
+		
+		return userInfoDao.selectByPrimaryKey(user.getUserid());
+	}
+
 }

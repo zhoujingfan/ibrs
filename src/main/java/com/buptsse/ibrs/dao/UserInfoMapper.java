@@ -13,6 +13,7 @@ public interface UserInfoMapper {
 
     UserInfo selectByPhoneNumber(String phonenumber);
     
+    
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);

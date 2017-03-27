@@ -27,6 +27,23 @@
     where enterprise_number = #{number,jdbcType=VARCHAR}
   </select>
   
+      <select id="selectByEnterpriseName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_enterprise
+    where enterprise_name = #{name,jdbcType=VARCHAR}
+  </select>
+  
+  
+   <select id="selectEnterpriseByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cn_enterprise
+    where id in (select enterprise from cn_user_enterprise where userid = #{userId,jdbcType=INTEGER})
+  </select>
+  
+ 
+ 
  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cn_enterprise

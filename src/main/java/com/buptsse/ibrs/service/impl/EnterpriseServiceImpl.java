@@ -19,7 +19,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	public Enterprise getEnterpriseByNumber(String number) {
 		// TODO Auto-generated method stub
 		
-		return enterpriseDao.selectByEnterpriseNumbwe(number);
+		return enterpriseDao.selectByEnterpriseNumber(number);
 	}
 
 	@Override
@@ -32,6 +32,13 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	public void updateEnterpriseCertigier(User user) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Enterprise getByEnterpriseName(String name) {
+		// TODO Auto-generated method stub
+		return enterpriseDao.selectByEnterpriseName(name);
+		
 	}
 
 }
