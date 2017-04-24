@@ -12,7 +12,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="common/js/bootstrap.js"></script>
-<title>${user.username }的主页</title>
+<title>${username }的主页</title>
 </head>
 <body>
 	<%@include file="head.jsp"%>
@@ -34,9 +34,9 @@
 			<div class="row col-10">
 					<div class="col-4 infopad">
 						<div>
-							<h4>欢迎， ${user.username }</h4>
+							<h4>欢迎， ${username }</h4>
 							<div class="padding-top-15">
-								<span>上次登录：2017-03-21 20:21</span>
+								<span>上次登录: ${user.lastLoginTime }</span>
 							</div>
 							
 						<div class="padding-top-15">
@@ -69,43 +69,7 @@
 							<span><a href="#">管理我的企业</a></span>
 						</div>
 					</div>
-				<div class="mainpad col-12">
-					<div class="padding-top-15 padding-bottom-10">
-						<span>最近提交交易预览：</span>
-					</div>
-					<div>
-						<table class="table table-striped">
-							<thead class="thead-inverse">
-								<tr>
-									<th>单号</th>
-									<th>提交时间</th>
-									<th>金额/人民币</th>
-									<th>标记信息</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>20170105565</td>
-									<td>2017-01-05</td>
-									<td>198元</td>
-									<td>正确报销</td>
-								</tr>
-								<tr>
-									<td>20170108654</td>
-									<td>2017-01-08</td>
-									<td>156元</td>
-									<td>正确报销</td>
-								</tr>
-								<tr>
-									<td>20170215983</td>
-									<td>2017-02-15</td>
-									<td>589元</td>
-									<td>正确报销</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+			
 			</div>
 		</div>
 	</div>

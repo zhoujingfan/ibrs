@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.buptsse.ibrs.model.UserAndEnterprise;
 
-public interface UserAndEnterpriseMapper {
+public interface UserAndEnterpriseDao {
     int deleteByPrimaryKey(Integer id);
 
     int insert(UserAndEnterprise record);
@@ -15,7 +15,11 @@ public interface UserAndEnterpriseMapper {
     
     UserAndEnterprise selectByEnterpriseId(Integer id);
 
+    UserAndEnterprise selectFollow(UserAndEnterprise record);
+    
     List<UserAndEnterprise> getMyEnterprise(Integer userId);
+    
+    List<UserAndEnterprise> getMyEmployee(Integer enterpriseId);
     
     int updateByPrimaryKeySelective(UserAndEnterprise record);
 

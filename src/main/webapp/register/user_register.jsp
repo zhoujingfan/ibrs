@@ -20,7 +20,7 @@
 		<form action="register" class="form-signin" method="post">
         	<h4 class="form-margin">个人用户注册</h4>
 			<label class="sr-only">用户名</label>
-			<input class="form-control form-margin" type="text" name="regi_name" placeholder="请输入用户名"/>
+			<input class="form-control form-margin" type="text" name="phoneNumber" placeholder="请输入手机号"/>
 			<label class="sr-only">密码</label>
 			<input class="form-control form-margin" type="password" name="regi_password" placeholder="请输入密码"/>
 			<input class="form-control form-margin" type="password" name="regi_password2" placeholder="请确认密码"/>

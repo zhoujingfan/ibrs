@@ -1,126 +1,105 @@
 package com.buptsse.ibrs.model;
 
-import java.util.Date;
 
 public class Invoice {
-    private Integer id;
+    private long invoiceId;
 
-    private Integer invoiceId;
+    private long number;
 
-    private Integer invoiceNumber;
+    private long taxNumber;
 
-    private Integer password;
+    private String password;
     
     private String payEnterprise;
 
-    private String taxNumber;
+    private String payData;
 
-    private Integer cnInvoicecol;
+    private String payee;
 
-    private Date payData;
-
-    private Integer payee;
-
-    private Integer payer;
+    private String payer;
 
     private String details;
 
     private Integer paySum;
 
-    public Integer getId() {
-        return id;
-    }
+	public long getInvoiceId() {
+		return invoiceId;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setInvoiceId(long invoiceId) {
+		this.invoiceId = invoiceId;
+	}
 
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
+	public long getNumber() {
+		return number;
+	}
 
-    public void setInvoiceId(Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
+	public void setNumber(long number) {
+		this.number = number;
+	}
 
-    
-    public Integer getPassword() {
+	public long getTaxNumber() {
+		return taxNumber;
+	}
+
+	public void setTaxNumber(long taxNumber) {
+		this.taxNumber = taxNumber;
+	}
+
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(Integer password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public Integer getInvoiceNumber() {
-        return invoiceNumber;
-    }
+	public String getPayEnterprise() {
+		return payEnterprise;
+	}
 
-    public void setInvoiceNumber(Integer invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
-    }
+	public void setPayEnterprise(String payEnterprise) {
+		this.payEnterprise = payEnterprise;
+	}
 
-    public String getPayEnterprise() {
-        return payEnterprise;
-    }
+	public String getPayData() {
+		return payData;
+	}
 
-    public void setPayEnterprise(String payEnterprise) {
-        this.payEnterprise = payEnterprise == null ? null : payEnterprise.trim();
-    }
+	public void setPayData(String payData) {
+		this.payData = payData;
+	}
 
-    public String getTaxNumber() {
-        return taxNumber;
-    }
+	public String getPayee() {
+		return payee;
+	}
 
-    public void setTaxNumber(String taxNumber) {
-        this.taxNumber = taxNumber == null ? null : taxNumber.trim();
-    }
+	public void setPayee(String payee) {
+		this.payee = payee;
+	}
 
-    public Integer getCnInvoicecol() {
-        return cnInvoicecol;
-    }
+	public String getPayer() {
+		return payer;
+	}
 
-    public void setCnInvoicecol(Integer cnInvoicecol) {
-        this.cnInvoicecol = cnInvoicecol;
-    }
+	public void setPayer(String payer) {
+		this.payer = payer;
+	}
 
-    public Date getPayData() {
-        return payData;
-    }
+	public String getDetails() {
+		return details;
+	}
 
-    public void setPayData(Date payData) {
-        this.payData = payData;
-    }
+	public void setDetails(String details) {
+		this.details = details;
+	}
 
-    public Integer getPayee() {
-        return payee;
-    }
+	public Integer getPaySum() {
+		return paySum;
+	}
 
-    public void setPayee(Integer payee) {
-        this.payee = payee;
-    }
+	public void setPaySum(Integer paySum) {
+		this.paySum = paySum;
+	}
 
-    public Integer getPayer() {
-        return payer;
-    }
-
-    public void setPayer(Integer payer) {
-        this.payer = payer;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details == null ? null : details.trim();
-    }
-
-    public Integer getPaySum() {
-        return paySum;
-    }
-
-    public void setPaySum(Integer paySum) {
-        this.paySum = paySum;
-    }
 }

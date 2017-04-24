@@ -13,7 +13,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link active disable">您好,</a>
 				</li>
-				<li class="nav-item"><a class="nav-link active disable">${username }</a>
+				<li class="nav-item"><a class="nav-link active disable">${enterprise.name }</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav navbar-right">

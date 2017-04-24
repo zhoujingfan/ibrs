@@ -12,51 +12,53 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="common/js/bootstrap.js"></script>
-<title>查看我关联的企业</title>
+<title>主页</title>
 </head>
 <body>
 	<%@include file="../head.jsp"%>
-
 	<div class="container padding-top-15">
 		<div class="row">
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
-					<a href="main" class="list-group-item ">首页</a> <a
-						href="myInvoice" class="list-group-item">我的发票</a> <a
-						href="my_enterprise" class="list-group-item active">查看企业</a> <a
-						href="myRecord" class="list-group-item">交易记录</a>
+					<a href="#" class="list-group-item active">首页</a> <a
+						href="#" class="list-group-item">员工信息</a> <a
+						href="#" class="list-group-item">发票报销</a> <a
+						href="#" class="list-group-item">查询记录</a>
+
 				</div>
 			</div>
+			
 			<div class="row col-10">
-
 				<div class="mainpad col-12">
-					<div class=" padding-top-15 padding-bottom-10">
-						<a >我关联的企业数量: ${myEnterpriseNum }</a>
+					<div class="padding-top-15 padding-bottom-10">
+						<span>企业员工：</span>
 					</div>
+					<table class="table table-striped">
+						<thead class="thead-inverse">
+							<tr>
+								<th>姓名</th>
+								<th>出生日期</th>
+								<th>手机号码</th>
+								<th>关联时间</th>
+								<th>是否离职</th>
+								<th>离职时间</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${follows}" var="follow" >
+								<tr>
+									<th>${follow.userId.truename}</th>
+									<th>${follow.userId.birthday}</th>
+									<th>${follow.userId.phoneNumber}</th>
+									<th>${follow.addTime}</th>
+									<th>${follow.ifLeave}</th>
+									<th>${follow.leaveTime}</th>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
-
-				<c:forEach items="${myEnterprise }" var="enterprises">
-					<div class="col-4 card">
-						<div class="form-title">
-							<span>${enterprises.enterpriseId.name }</span>
-						</div>
-
-						<div class="padding-top-15">
-							<span>关联时间：${enterprises.addTime }</span>
-						</div>
-						<div class="padding-top-15">
-							<span><a href="#">管理</a></span>
-						</div>
-					</div>
-
-				</c:forEach>
-				<div class="col-4 card">
-					<span style="padding-top:15%;" class="text-center"><a
-						href="add_enterprise">关联新的企业</a></span>
-				</div>
-
 			</div>
-
 		</div>
 	</div>
 </body>

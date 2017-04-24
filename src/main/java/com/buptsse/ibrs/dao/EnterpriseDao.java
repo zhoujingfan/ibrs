@@ -12,10 +12,13 @@ public interface EnterpriseDao {
     int insertSelective(Enterprise record);
 
     Enterprise selectByPrimaryKey(Integer id);
-
-    Enterprise selectByEnterpriseNumber(String number);
     
     Enterprise selectByEnterpriseName(String name);
+    
+    Enterprise selectByEnterpriseLoginName(String name);
+    
+    Enterprise selectByLicenseNumber(long licenseNumber);
+    
     int updateByPrimaryKeySelective(Enterprise record);
 
     int updateByPrimaryKey(Enterprise record);

@@ -1,13 +1,15 @@
 package com.buptsse.ibrs.model;
 
-import java.util.Date;
 
-public class InvoiceExpense extends InvoiceExpenseKey {
-    private Integer uploadUser;
+public class InvoiceExpense {
+	
+	private long uploadId;
+	
+    private UserInfo uploadUser;
 
-    private Date uploadDate;
+    private String uploadTime;
 
-    private Integer uploadEnterprise;
+    private Enterprise uploadEnterprise;
 
     private Integer ifRight;
 
@@ -15,31 +17,64 @@ public class InvoiceExpense extends InvoiceExpenseKey {
 
     private Integer ifRepetition;
 
-    public Integer getUploadUser() {
-        return uploadUser;
-    }
 
-    public void setUploadUser(Integer uploadUser) {
-        this.uploadUser = uploadUser;
-    }
+	private Invoice invoice;
+    
+    private String massage;
 
-    public Date getUploadDate() {
-        return uploadDate;
-    }
+    
 
-    public void setUploadDate(Date uploadDate) {
-        this.uploadDate = uploadDate;
-    }
+    public String getMassage() {
+		return massage;
+	}
 
-    public Integer getUploadEnterprise() {
-        return uploadEnterprise;
-    }
+	public void setMassage(String massage) {
+		this.massage = massage;
+	}
+	
+	public String getUploadTime() {
+		return uploadTime;
+	}
 
-    public void setUploadEnterprise(Integer uploadEnterprise) {
-        this.uploadEnterprise = uploadEnterprise;
-    }
+	public void setUploadTime(String uploadTime) {
+		this.uploadTime = uploadTime;
+	}
 
-    public Integer getIfRight() {
+	public long getUploadId() {
+		return uploadId;
+	}
+
+	public void setUploadId(long uploadId) {
+		this.uploadId = uploadId;
+	}
+
+
+
+	public Invoice getInvoice() {
+		return invoice;
+	}
+
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
+
+	public UserInfo getUploadUser() {
+		return uploadUser;
+	}
+
+	public void setUploadUser(UserInfo uploadUser) {
+		this.uploadUser = uploadUser;
+	}
+
+	public Enterprise getUploadEnterprise() {
+		return uploadEnterprise;
+	}
+
+	public void setUploadEnterprise(Enterprise uploadEnterprise) {
+		this.uploadEnterprise = uploadEnterprise;
+	}
+
+	public Integer getIfRight() {
         return ifRight;
     }
 

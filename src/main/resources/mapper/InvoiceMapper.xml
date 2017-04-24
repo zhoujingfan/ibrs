@@ -2,18 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.buptsse.ibrs.dao.InvoiceDao" >
   <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.Invoice" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="invoice_id" property="invoiceId" jdbcType="INTEGER" />
-    <result column="invoice_number" property="invoiceNumber" jdbcType="INTEGER" />
+    <id column="invoice_id" property="invoiceId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="INTEGER"/>
     <result column="pay_enterprise" property="payEnterprise" jdbcType="VARCHAR" />
     <result column="tax_number" property="taxNumber" jdbcType="VARCHAR" />
-    <result column="cn_invoicecol" property="cnInvoicecol" jdbcType="INTEGER" />
-    <result column="pay_data" property="payData" jdbcType="DATE" />
-    <result column="payee" property="payee" jdbcType="INTEGER" />
-    <result column="payer" property="payer" jdbcType="INTEGER" />
+    <result column="pay_data" property="payData" jdbcType="VARCHAR" />
+    <result column="payee" property="payee" jdbcType="VARCHAR" />
+    <result column="payer" property="payer" jdbcType="VARCHAR" />
     <result column="details" property="details" jdbcType="VARCHAR" />
     <result column="pay_sum" property="paySum" jdbcType="INTEGER" />
-    <result column="password" property="password" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, invoice_id, invoice_number, password, pay_enterprise, tax_number, cn_invoicecol, pay_data, 
@@ -30,27 +28,20 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.buptsse.ibrs.model.Invoice" >
-    insert into cn_invoice (id, invoice_id, invoice_number, password, 
-      pay_enterprise, tax_number, cn_invoicecol, 
-      pay_data, payee, payer, 
-      details, pay_sum)
-    values (#{id,jdbcType=INTEGER}, #{invoiceId,jdbcType=INTEGER}, #{invoiceNumber,jdbcType=INTEGER}, 
-      #{password,jdbcType=INTEGER},
-      #{payEnterprise,jdbcType=VARCHAR}, #{taxNumber,jdbcType=VARCHAR}, #{cnInvoicecol,jdbcType=INTEGER}, 
-      #{payData,jdbcType=DATE}, #{payee,jdbcType=INTEGER}, #{payer,jdbcType=INTEGER}, 
+    insert into invoice (invoice_id, number, password,pay_enterprise, tax_number,pay_date, payee, payer, details, pay_sum)
+    values (#{invoiceId,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{password,jdbcType=INTEGER},
+      #{payEnterprise,jdbcType=VARCHAR}, #{taxNumber,jdbcType=VARCHAR},
+      #{payData,jdbcType=VARCHAR}, #{payee,jdbcType=VARCHAR}, #{payer,jdbcType=VARCHAR}, 
       #{details,jdbcType=VARCHAR}, #{paySum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.Invoice" >
-    insert into cn_invoice
+    insert into invoice
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="invoiceId != null" >
         invoice_id,
       </if>
-      <if test="invoiceNumber != null" >
-        invoice_number,
+      <if test="number != null" >
+        number,
       </if>
       <if test="password != null" >
         password,
@@ -60,9 +51,6 @@
       </if>
       <if test="taxNumber != null" >
         tax_number,
-      </if>
-      <if test="cnInvoicecol != null" >
-        cn_invoicecol,
       </if>
       <if test="payData != null" >
         pay_data,
@@ -81,14 +69,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="invoiceId != null" >
         #{invoiceId,jdbcType=INTEGER},
       </if>
-      <if test="invoiceNumber != null" >
-        #{invoiceNumber,jdbcType=INTEGER},
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
       </if>
       <if test="password != null" >
         #{password,jdbcType=INTEGER},
@@ -99,17 +84,14 @@
       <if test="taxNumber != null" >
         #{taxNumber,jdbcType=VARCHAR},
       </if>
-      <if test="cnInvoicecol != null" >
-        #{cnInvoicecol,jdbcType=INTEGER},
-      </if>
       <if test="payData != null" >
-        #{payData,jdbcType=DATE},
+        #{payData,jdbcType=VARCHAR},
       </if>
       <if test="payee != null" >
-        #{payee,jdbcType=INTEGER},
+        #{payee,jdbcType=VARCHAR},
       </if>
       <if test="payer != null" >
-        #{payer,jdbcType=INTEGER},
+        #{payer,jdbcType=VARCHAR},
       </if>
       <if test="details != null" >
         #{details,jdbcType=VARCHAR},
@@ -125,8 +107,8 @@
       <if test="invoiceId != null" >
         invoice_id = #{invoiceId,jdbcType=INTEGER},
       </if>
-      <if test="invoiceNumber != null" >
-        invoice_number = #{invoiceNumber,jdbcType=INTEGER},
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=INTEGER},
@@ -136,9 +118,6 @@
       </if>
       <if test="taxNumber != null" >
         tax_number = #{taxNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cnInvoicecol != null" >
-        cn_invoicecol = #{cnInvoicecol,jdbcType=INTEGER},
       </if>
       <if test="payData != null" >
         pay_data = #{payData,jdbcType=DATE},

@@ -15,13 +15,14 @@ public interface UserService {
 	 * @param username
 	 * @return
 	 */
-	User getByUsername(String username);
+
+	UserInfo getByIdnumber(String idNumber);
+	User getByPhoneNumber(long phoneNumber);
+	
 	void AddUser(User user);
 
-	void SavaUserInfo(UserInfo user);
-	UserInfo getByPhoneNumber(String number);
+	void SaveUserInfo(UserInfo userInfo);
 	
-	UserInfo getUserInfoById(Integer id);
-	
-	UserInfo getUserInfoByUsername(String Username);
+	void updateLoginTime(User user);
+
 }

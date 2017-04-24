@@ -1,7 +1,6 @@
 package com.buptsse.ibrs.service.impl;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buptsse.ibrs.dao.EnterpriseDao;
-import com.buptsse.ibrs.dao.UserAndEnterpriseMapper;
+import com.buptsse.ibrs.dao.UserAndEnterpriseDao;
 import com.buptsse.ibrs.model.Enterprise;
 import com.buptsse.ibrs.model.UserAndEnterprise;
 import com.buptsse.ibrs.model.UserInfo;
@@ -20,7 +19,7 @@ import com.buptsse.ibrs.service.UserAndEnterpriseService;
 public class UserAndEnterpriseServiceImpl implements UserAndEnterpriseService {
 
 	@Autowired
-	UserAndEnterpriseMapper relateDao;
+	UserAndEnterpriseDao relateDao;
 
 	@Autowired
 	EnterpriseDao enterpriseDao;
@@ -28,24 +27,24 @@ public class UserAndEnterpriseServiceImpl implements UserAndEnterpriseService {
 	@Override
 	public String UserAddEnterprise(UserInfo user, Enterprise enterprise) {
 		// TODO Auto-generated method stub
-		if (relateDao.getMyEnterprise(user.getId()).size() != 0) {
+		List<UserAndEnterprise> myFollow = relateDao.getMyEnterprise(user.getId());
+		boolean ifExist = false;
+		for(int i = 0;i<myFollow.size();i++){
+			if(myFollow.get(i).getEnterpriseId().getId() == enterprise.getId())
+				ifExist = true;
+		}
+		if (ifExist) {
 			System.out.println("已经关联该企业");
 			return "exist";
 		} else {
-			UserAndEnterprise relate = new UserAndEnterprise();
-			relate.setUserid(user.getId());
-			relate.setEnterprise(enterprise.getId());
-			try {
-				Date date = new Date();
-				DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				String time = format.format(date);
-				date = format.parse(time);
-
-				relate.setDate(date);
-			} catch (ParseException e) {
-
-			}
-			relateDao.insert(relate);
+			UserAndEnterprise follow = new UserAndEnterprise();
+			Date date = new Date();
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String time = format.format(date);
+			follow.setAddTime(time);
+			follow.setUserId(user);
+			follow.setEnterpriseId(enterprise);
+			relateDao.insert(follow);
 			return "success";
 		}
 	}
@@ -81,6 +80,12 @@ public class UserAndEnterpriseServiceImpl implements UserAndEnterpriseService {
 		// TODO Auto-generated method stub
 		
 		return relateDao.selectByEnterpriseId(id);
+	}
+
+	@Override
+	public List<UserAndEnterprise> EnterpriseGetEmployee(Integer enterpriseId) {
+		// TODO Auto-generated method stub
+		return relateDao.getMyEmployee(enterpriseId);
 	}
 
 }

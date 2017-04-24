@@ -21,39 +21,109 @@ public class RegisterController {
 	
 	@Autowired
 	UserService userService;
-	@RequestMapping("register")
-	private String Register(String regi_name, String regi_password, HttpSession session){
-		User user = userService.getByUsername(regi_name);
+	/**
+	 * 重定向到个人用户注册界面
+	 * @return
+	 */
+	@RequestMapping(value={"login/to_register"})
+	private String ToRegister(){
+		return "redirect:../register/user_register.jsp";
+	}
+	
+	/**
+	 * 个人用户注册
+	 * @param phoneNumber
+	 * @param regi_password
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("register/register")
+	private String Register(long phoneNumber, String regi_password, HttpSession session){
+		User user = userService.getByPhoneNumber(phoneNumber);
 		if(user != null){
 			System.out.println("用户已经存在");
 		}
 		else{
 			user  = new User();
-			user.setUsername(regi_name);
+			user.setPhoneNumber(phoneNumber);
 			user.setPassword(regi_password);
 			userService.AddUser(user);
+			session.setAttribute("user", user);
 			System.out.println("注册成功");
+			return "identification";
 		}
-		return "redirect:../login/login";
+		return "redirect:../login/login.jsp";
 	}
-
+	/**
+	 * 实名认证
+	 * @param truename
+	 * @param idNumber
+	 * @param address
+	 * @param birthday
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value={"register/identification"})
+	private String Identification(
+			String truename,
+			String idNumber,
+			String address,
+			String birthday,
+			HttpSession session
+			){
+		
+		UserInfo userInfo = new UserInfo();
+		if(userService.getByIdnumber(idNumber) != null){
+			userInfo = userService.getByIdnumber(idNumber);
+			User user = (User) session.getAttribute("user");
+			user.setUserInfo(userInfo);
+			return "redirect:../login/login.jsp";
+		}
+		userInfo.setTruename(truename);
+		userInfo.setIdNumber(idNumber);
+		userInfo.setAddress(address);
+		userInfo.setBirthday(birthday);
+		
+		userService.SaveUserInfo(userInfo);
+		return "redirect:../login/login.jsp";
+	}
+	
+	/**
+	 * 跳转到企业注册
+	 * @return
+	 */
 	@RequestMapping(value={"enterprise"})
 	private String Enterprise(){
 		return "redirect:../register/enterprise_register.jsp";
 	}
+	/**
+	 * 企业注册
+	 * @param enterprise_name
+	 * @param login_name
+	 * @param password
+	 * @param enterprise_address
+	 * @param license_number
+	 * @param certigier_name
+	 * @param certigier_id_number
+	 * @param certigier_phone_number
+	 * @param certigier_email
+	 * @param certigier_address
+	 * @return
+	 */
 	@RequestMapping("register/enterprise_register")
 	private String EnterpriseRegister(String enterprise_name,
-			String enterprise_number,
+			String login_name,
+			String password,
 			String enterprise_address,
-			String license_number,
+			long license_number,
 			String certigier_name,
 			String certigier_id_number,
-			String certigier_phone_number,
+			long certigier_phone_number,
 			String certigier_email,
 			String certigier_address
 			){
-		UserInfo user = userService.getByPhoneNumber(certigier_phone_number);
-		Enterprise enterprise = enterpriseService.getEnterpriseByNumber(enterprise_number);
+		UserInfo user = userService.getByIdnumber(certigier_id_number);
+		Enterprise enterprise = enterpriseService.getByLicenseNumber(license_number);
 		if(enterprise != null){
 			System.out.println("该企业已经注册");		
 			
@@ -63,21 +133,21 @@ public class RegisterController {
 				user = new UserInfo();
 				user.setAddress(certigier_address);
 				user.setTruename(certigier_name);
-				user.setEmail(certigier_email);
-				user.setIdcardnumber(certigier_id_number);
-				user.setPhonenumber(certigier_phone_number);
-				userService.SavaUserInfo(user);
-				user = userService.getByPhoneNumber(certigier_phone_number);
+				user.setIdNumber(certigier_id_number);
+				user.setPhoneNumber(certigier_phone_number);
+				userService.SaveUserInfo(user);
+				user = userService.getByIdnumber(certigier_id_number);
 			}
 			enterprise = new Enterprise();
-			enterprise.setEnterpriseName(enterprise_name);
-			enterprise.setEnterpriseNumber(enterprise_number);
-			enterprise.setEnterpriseAddress(enterprise_address);
-			enterprise.setLicenseNumbwe(license_number);
-			enterprise.setCertigier(user.getId());
+			enterprise.setAddress(enterprise_address);
+			enterprise.setLicenseNumber(license_number);
+			enterprise.setPassword(password);
+			enterprise.setLoginName(login_name);
+			enterprise.setName(enterprise_name);
+			enterprise.setCertigier(user);
 			enterpriseService.saveEnterprise(enterprise);
 		}
 		
-		return "redirect:../index";
+		return "redirect:../index.jsp";
 	}
 }

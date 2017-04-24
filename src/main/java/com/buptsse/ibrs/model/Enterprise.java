@@ -1,30 +1,37 @@
 package com.buptsse.ibrs.model;
 
-import java.util.Date;
 
 public class Enterprise {
     private Integer id;
 
-    private String enterpriseName;
-
-    private String enterpriseNumber;
-
-    private String enterpriseAddress;
-
-    private Integer certigier;
+    private String loginName;
 
     private String password;
-    
-    private Date date;
 
-    private String licenseNumber;
+    private String name;
+
+    private String address;
     
-    public String getLicenseNumber() {
-		return licenseNumber;
+    private long licenseNumber;
+    
+    private UserInfo certigier;
+
+    private String date;
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setLicenseNumbwe(String licenseNumbwe) {
-		this.licenseNumber = licenseNumbwe;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 
 	public String getPassword() {
@@ -35,51 +42,45 @@ public class Enterprise {
 		this.password = password;
 	}
 
-	public Integer getId() {
-        return id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getEnterpriseName() {
-        return enterpriseName;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setEnterpriseName(String enterpriseName) {
-        this.enterpriseName = enterpriseName == null ? null : enterpriseName.trim();
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getEnterpriseNumber() {
-        return enterpriseNumber;
-    }
+	public long getLicenseNumber() {
+		return licenseNumber;
+	}
 
-    public void setEnterpriseNumber(String enterpriseNumber) {
-        this.enterpriseNumber = enterpriseNumber == null ? null : enterpriseNumber.trim();
-    }
+	public void setLicenseNumber(long licenseNumber) {
+		this.licenseNumber = licenseNumber;
+	}
 
-    public String getEnterpriseAddress() {
-        return enterpriseAddress;
-    }
+	public UserInfo getCertigier() {
+		return certigier;
+	}
 
-    public void setEnterpriseAddress(String enterpriseAddress) {
-        this.enterpriseAddress = enterpriseAddress == null ? null : enterpriseAddress.trim();
-    }
+	public void setCertigier(UserInfo certigier) {
+		this.certigier = certigier;
+	}
 
-    public Integer getCertigier() {
-        return certigier;
-    }
+	public String getDate() {
+		return date;
+	}
 
-    public void setCertigier(Integer certigier) {
-        this.certigier = certigier;
-    }
+	public void setDate(String date) {
+		this.date = date;
+	}
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  
 }

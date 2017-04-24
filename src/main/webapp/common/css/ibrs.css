@@ -63,7 +63,11 @@ body {
 	padding:15px;
 	margin:10px auto;
 }
-
+.form-identification{
+	max-width:55%;
+	padding:50px;
+	margin:10px auto;
+}
 .form-margin{
 	margin:10px;
 }

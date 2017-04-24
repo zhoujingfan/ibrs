@@ -3,6 +3,6 @@
 <html>
 <body>
 <a href="login">个人用户入口</a>
-<a href="enterprise">企业用户入口</a>
+<a href="enterprise_login">企业用户入口</a>
 </body>
 </html>

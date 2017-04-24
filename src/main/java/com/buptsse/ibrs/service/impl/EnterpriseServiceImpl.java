@@ -15,12 +15,6 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	@Autowired
 	EnterpriseDao enterpriseDao;
 	
-	@Override
-	public Enterprise getEnterpriseByNumber(String number) {
-		// TODO Auto-generated method stub
-		
-		return enterpriseDao.selectByEnterpriseNumber(number);
-	}
 
 	@Override
 	public void saveEnterprise(Enterprise enterprise) {
@@ -35,10 +29,22 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	}
 
 	@Override
-	public Enterprise getByEnterpriseName(String name) {
+	public Enterprise getByLicenseNumber(long licenseNumber) {
+		// TODO Auto-generated method stub
+		return enterpriseDao.selectByLicenseNumber(licenseNumber);
+	}
+
+	@Override
+	public Enterprise getByName(String name) {
 		// TODO Auto-generated method stub
 		return enterpriseDao.selectByEnterpriseName(name);
-		
 	}
+
+	@Override
+	public Enterprise getByLoginName(String name) {
+		// TODO Auto-generated method stub
+		return enterpriseDao.selectByEnterpriseLoginName(name);
+	}
+
 
 }

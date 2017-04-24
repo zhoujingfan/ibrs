@@ -22,9 +22,9 @@
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
 					<a href="main" class="list-group-item ">首页</a> 
-					<a href="add.jsp" class="list-group-item active">我的发票</a> 
-					<a href="../enterprise/myenterprise.jsp" class="list-group-item">查看企业</a> 
-					<a href="../record.jsp" class="list-group-item">交易记录</a>
+					<a href="myInvoice" class="list-group-item active">我的发票</a> 
+					<a href="my_enterprise" class="list-group-item">查看企业</a> 
+					<a href="myRecord" class="list-group-item">交易记录</a>
 					</div>
 			</div>
 			<div class="row col-10">
@@ -34,54 +34,67 @@
 						<span>填写发票信息：</span>
 					</div>
 
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="add_submit" method="post">
+					
+					
+						<div class="form-group row">
+							<label for="label-choose-enterprise" class="col-2 col-form-label">选择报销的企业</label>
+							<div class="col-9">
+							<select class="form-control" name = "enterprise"> 
+								<c:forEach items="${myEnterprise}" var="enterprises">
+									<option> ${enterprises.enterpriseId.name }</option>
+								</c:forEach>
+							</select>
+							</div>
+						</div>
+						
 						<div class="form-group row">
 							<label for="label-invoice-id" class="col-2 col-form-label">发票代码</label>
 							<div class="col-9">
 								<input class="form-control" type="text" value=""
-									id="example-text-input">
+									id="text-invoice-id" placeholder="请填写13位发票代码" name="invoiceId">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="label-invoice-number" class="col-2 col-form-label">发票号码</label>
 							<div class="col-9">
 								<input class="form-control" type="text"
-									value="" id="example-search-input">
+									value="" id="text-invoice-number" placeholder="请填写10位发票号码" name="invoiceNumber">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="label-invoice-password" class="col-2 col-form-label">密 码</label>
 							<div class="col-9">
 								<input class="form-control" type="text"
-									value="" id="example-email-input">
+									value="" id="text-invoice-password" placeholder="请填写发票密码" name="invoicePassword">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="label-invoice-enterprice" class="col-2 col-form-label">收款单位</label>
 							<div class="col-9">
 								<input class="form-control" type="text"
-									value="" id="example-url-input">
+									value="" id="text-invoice-enterprise" placeholder="请填写收款单位名称" name="invoiceEnterprise">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="label-tax-number" class="col-2 col-form-label">税号</label>
 							<div class="col-9">
 								<input class="form-control" type="text" value=""
-									id="example-tel-input">
+									id="text-tax-number" placeholder="请填写税号" name = "taxNumber">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="label-date" class="col-2 col-form-label">开票日期</label>
 							<div class="col-9">
 								<input class="form-control" type="date" value=""
-									id="example-password-input">
+									id="text-date" placeholder="请填写开票日期" name="invoiceDate">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="label-payee" class="col-2 col-form-label">开票人</label>
 							<div class="col-9">
 								<input class="form-control" type="text" value=""
-									id="example-number-input">
+									id="text-invoice-payee" placeholder="请填写开票人姓名	" name="invoicePayee">
 							</div>
 						</div>
 						 
@@ -89,14 +102,21 @@
 							<label for="label-payer" class="col-2 col-form-label">付款单位(个人)</label>
 							<div class="col-9">
 								<input class="form-control" type="text" value=""
-									id="example-date-input">
+									id="text-payer" placeholder="请填写付款单位名称或者个人姓名" name="invoicePayer">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="label-details" class="col-2 col-form-label">项目明细</label>
+							<div class="col-9">
+								<input class="form-control" type="text" value=""
+									id="text-details" placeholder="请填写详细的消费项目" name="invoiceDetails">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="label-paysum" class="col-2 col-form-label">总额</label>
 							<div class="col-9">
 								<input class="form-control" type="text" value=""
-									id="example-month-input">
+									id="text-paysum" placeholder="请填写发票总金额" name="invoiceSum">
 							</div>
 						</div>
 

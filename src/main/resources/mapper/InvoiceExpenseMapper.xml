@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.buptsse.ibrs.dao.InvoiceExpenseMapper" >
+<mapper namespace="com.buptsse.ibrs.dao.InvoiceExpenseDao" >
   <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.InvoiceExpense" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <id column="invoice_id" property="invoiceId" jdbcType="VARCHAR" />
-    <result column="upload_user" property="uploadUser" jdbcType="INTEGER" />
-    <result column="upload_date" property="uploadDate" jdbcType="DATE" />
-    <result column="upload_enterprise" property="uploadEnterprise" jdbcType="INTEGER" />
-    <result column="if_right" property="ifRight" jdbcType="INTEGER" />
-    <result column="if_expense" property="ifExpense" jdbcType="INTEGER" />
-    <result column="if_repetition" property="ifRepetition" jdbcType="INTEGER" />
+    <id column="upload_id" property="uploadId" jdbcType="INTEGER" />
+    <result column="upload_time" property="uploadTime" jdbcType="VARCHAR" />
+    <result column="if_right" property="ifRight" jdbcType="VARCHAR" />
+    <result column="if_expense" property="ifExpense" jdbcType="VARCHAR" />
+    <result column="if_repetition" property="ifRepetition" jdbcType="VARCHAR" />
+    <result column="massage" property="massage"/>
+    <association column="upload_enterprise_id" property="uploadEnterprise" javaType="com.buptsse.ibrs.model.Enterprise" >
+    	<id column="enterprise_id" property="id"/>
+    	<result column="name" property="name"/>
+    </association>
+    <association column="upload_user_id" property="uploadUser" javaType="com.buptsse.ibrs.model.UserInfo" >
+    	<id column="user_info_id" property="id" />
+    	<result column="truename" property="truename"/>
+    	<result column="id_number" property="idNumber"/>
+    	<result column="address" property="address"/>
+    	<result column="birthday" property="birthday"/>
+    	<result column="phone_number" property="phoneNumber"/>
+    </association>
+    <association column="invoiceId" property="invoice" javaType="com.buptsse.ibrs.model.Invoice">
+    	<id column="invoice_id" property="invoiceId"/>
+    	<result column="number" property="number"/>
+		<result column="tax_number" property="taxNumber"/>
+		<result column="password" property="password"/>
+		<result column="pay_enterprise" property="payEnterprise"/>
+		<result column="pay_date" property="payData"/>
+		<result column="payee" property="payee"/>
+		<result column="payer" property="payer"/>
+		<result column="details" property="details"/>
+		<result column="pay_sum" property="paySum"/>
+    </association>
   </resultMap>
+  
+  
   <sql id="Base_Column_List" >
     id, invoice_id, upload_user, upload_date, upload_enterprise, if_right, if_expense, 
     if_repetition
@@ -22,21 +46,30 @@
     where id = #{id,jdbcType=INTEGER}
       and invoice_id = #{invoiceId,jdbcType=VARCHAR}
   </select>
+  
+  <select id="selectAllByUserInfoId" resultMap="BaseResultMap" parameterType="long">
+  	select * from invoice i, invoice_upload n, user_info u, enterprise e where n.upload_user_id = #{id} and i.invoice_id = n.invoice_id and e.enterprise_id = n.upload_enterprise_id;
+  
+  </select>
+  
+   <select id="selectAllByUserEnterprise" resultMap="BaseResultMap" parameterType="com.buptsse.ibrs.model.Enterprise">
+  	select * from invoice i, invoice_upload n, user_info u, enterprise e 
+  	where n.upload_user_id = n.upload_user_id and i.invoice_id = n.invoice_id and e.enterprise_id = #{id};
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="com.buptsse.ibrs.model.InvoiceExpenseKey" >
     delete from cn_invoice_expense
     where id = #{id,jdbcType=INTEGER}
       and invoice_id = #{invoiceId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.buptsse.ibrs.model.InvoiceExpense" >
-    insert into cn_invoice_expense (id, invoice_id, upload_user, 
-      upload_date, upload_enterprise, if_right, 
-      if_expense, if_repetition)
-    values (#{id,jdbcType=INTEGER}, #{invoiceId,jdbcType=VARCHAR}, #{uploadUser,jdbcType=INTEGER}, 
-      #{uploadDate,jdbcType=DATE}, #{uploadEnterprise,jdbcType=INTEGER}, #{ifRight,jdbcType=INTEGER}, 
-      #{ifExpense,jdbcType=INTEGER}, #{ifRepetition,jdbcType=INTEGER})
+    insert into invoice_upload (upload_id, upload_user_id,upload_enterprise_id,upload_time,if_right,if_repetition,if_expense,invoice_id)
+    values (#{uploadId,jdbcType=INTEGER}, #{uploadUser.id}, #{uploadEnterprise.id}, 
+      #{uploadTime,jdbcType=VARCHAR}, #{ifRight,jdbcType=VARCHAR}, #{ifRepetition,jdbcType=VARCHAR}, #{ifExpense,jdbcType=VARCHAR}, #{invoice.invoiceId})
   </insert>
   <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.InvoiceExpense" >
-    insert into cn_invoice_expense
+    insert into invoice_upload
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -68,25 +101,25 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="invoiceId != null" >
-        #{invoiceId,jdbcType=VARCHAR},
+        #{invoice},
       </if>
       <if test="uploadUser != null" >
-        #{uploadUser,jdbcType=INTEGER},
+        #{uploadUser},
       </if>
       <if test="uploadDate != null" >
-        #{uploadDate,jdbcType=DATE},
+        #{uploadDate},
       </if>
       <if test="uploadEnterprise != null" >
-        #{uploadEnterprise,jdbcType=INTEGER},
+        #{uploadEnterprise},
       </if>
       <if test="ifRight != null" >
-        #{ifRight,jdbcType=INTEGER},
+        #{ifRight},
       </if>
       <if test="ifExpense != null" >
-        #{ifExpense,jdbcType=INTEGER},
+        #{ifExpense},
       </if>
       <if test="ifRepetition != null" >
-        #{ifRepetition,jdbcType=INTEGER},
+        #{ifRepetition},
       </if>
     </trim>
   </insert>
@@ -94,36 +127,36 @@
     update cn_invoice_expense
     <set >
       <if test="uploadUser != null" >
-        upload_user = #{uploadUser,jdbcType=INTEGER},
+        upload_user = #{uploadUser},
       </if>
       <if test="uploadDate != null" >
-        upload_date = #{uploadDate,jdbcType=DATE},
+        upload_date = #{uploadDate},
       </if>
       <if test="uploadEnterprise != null" >
-        upload_enterprise = #{uploadEnterprise,jdbcType=INTEGER},
+        upload_enterprise = #{uploadEnterprise},
       </if>
       <if test="ifRight != null" >
-        if_right = #{ifRight,jdbcType=INTEGER},
+        if_right = #{ifRight},
       </if>
       <if test="ifExpense != null" >
-        if_expense = #{ifExpense,jdbcType=INTEGER},
+        if_expense = #{ifExpense},
       </if>
       <if test="ifRepetition != null" >
-        if_repetition = #{ifRepetition,jdbcType=INTEGER},
+        if_repetition = #{ifRepetition},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
-      and invoice_id = #{invoiceId,jdbcType=VARCHAR}
+      and invoice_id = #{invoiceId}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.buptsse.ibrs.model.InvoiceExpense" >
     update cn_invoice_expense
-    set upload_user = #{uploadUser,jdbcType=INTEGER},
-      upload_date = #{uploadDate,jdbcType=DATE},
-      upload_enterprise = #{uploadEnterprise,jdbcType=INTEGER},
-      if_right = #{ifRight,jdbcType=INTEGER},
-      if_expense = #{ifExpense,jdbcType=INTEGER},
-      if_repetition = #{ifRepetition,jdbcType=INTEGER}
+    set upload_user = #{uploadUser.id},
+      upload_date = #{uploadDate},
+      upload_enterprise = #{uploadEnterprise.id},
+      if_right = #{ifRight},
+      if_expense = #{ifExpense},
+      if_repetition = #{ifRepetition}
     where id = #{id,jdbcType=INTEGER}
-      and invoice_id = #{invoiceId,jdbcType=VARCHAR}
+      and invoice_id = #{invoiceId}
   </update>
 </mapper>

@@ -10,6 +10,7 @@ public interface UserAndEnterpriseService {
 
 	String UserAddEnterprise(UserInfo user, Enterprise enterprise);
 	List<UserAndEnterprise> UserGetMyEnterprise(Integer userId);
+	List<UserAndEnterprise> EnterpriseGetEmployee(Integer enterpriseId);
 	List<Enterprise> UserGetEnterprise(Integer userId);
 	UserAndEnterprise getRelateByEnterpriseId(Integer id);
 	String EnterpriseAddUser(UserInfo user);

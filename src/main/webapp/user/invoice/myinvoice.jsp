@@ -24,7 +24,7 @@
 					<a href="main" class="list-group-item ">首页</a> 
 					<a href="myInvoice" class="list-group-item active">我的发票</a> 
 					<a href="my_enterprise" class="list-group-item">查看企业</a> 
-					<a href="../record.jsp" class="list-group-item">交易记录</a> 
+					<a href="myRecord" class="list-group-item">交易记录</a> 
 				</div>
 			</div>
 			<div class="row col-10">
@@ -38,73 +38,31 @@
 				<div class="mainpad col-12">
 
 					<div class="padding-top-15 padding-bottom-10">
-						<span>企业一：</span>
+						<span>最近提交的发票：</span>
 					</div>
 					<table class="table table-striped">
 						<thead class="thead-inverse">
 							<tr>
-								<th>单号</th>
+								<th>发票号码</th>
 								<th>提交时间</th>
-								<th>金额/人民币</th>
-								<th>标记信息</th>
+								<th>报销的企业</th>
+								<th>金额/元</th>
+								<th>是否报销</th>
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="${invoiceExpense }" var="invoiceExpense">
 							<tr>
-								<td>20170105565</td>
-								<td>2017-01-05</td>
-								<td>198元</td>
-								<td>正确报销</td>
+								<td>${invoiceExpense.invoice.invoiceId }</td>
+								<td>${invoiceExpense.uploadTime }</td>
+								<td>${invoiceExpense.uploadEnterprise.name }</td>
+								<td>${invoiceExpense.invoice.paySum }</td>
+								<td>${invoiceExpense.massage }</td>
 							</tr>
-							<tr>
-								<td>20170108654</td>
-								<td>2017-01-08</td>
-								<td>156元</td>
-								<td>正确报销</td>
-							</tr>
-							<tr>
-								<td>20170215983</td>
-								<td>2017-02-15</td>
-								<td>589元</td>
-								<td>正确报销</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-
-					<div class="padding-top-15 padding-bottom-10">
-						<span>企业二：</span>
 					</div>
-					<table class="table table-striped">
-						<thead class="thead-inverse">
-							<tr>
-								<th>单号</th>
-								<th>提交时间</th>
-								<th>金额/人民币</th>
-								<th>标记信息</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>20170105565</td>
-								<td>2017-01-05</td>
-								<td>198元</td>
-								<td>正确报销</td>
-							</tr>
-							<tr>
-								<td>20170108654</td>
-								<td>2017-01-08</td>
-								<td>156元</td>
-								<td>正确报销</td>
-							</tr>
-							<tr>
-								<td>20170215983</td>
-								<td>2017-02-15</td>
-								<td>589元</td>
-								<td>正确报销</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
 
 
 			</div>

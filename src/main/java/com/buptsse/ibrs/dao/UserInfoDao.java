@@ -2,7 +2,7 @@ package com.buptsse.ibrs.dao;
 
 import com.buptsse.ibrs.model.UserInfo;
 
-public interface UserInfoMapper {
+public interface UserInfoDao {
     int deleteByPrimaryKey(Integer id);
 
     int insert(UserInfo record);
@@ -13,6 +13,7 @@ public interface UserInfoMapper {
 
     UserInfo selectByPhoneNumber(String phonenumber);
     
+    UserInfo selectByIdNumber(String idNumber);
     
     int updateByPrimaryKeySelective(UserInfo record);
 

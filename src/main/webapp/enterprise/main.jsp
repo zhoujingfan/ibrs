@@ -12,32 +12,32 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="common/js/bootstrap.js"></script>
-<title>关联企业</title>
+<title>主页</title>
 </head>
 <body>
-	<%@include file="../head.jsp"%>
-
+	<%@include file="head.jsp"%>
 	<div class="container padding-top-15">
 		<div class="row">
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
-					<a href="main" class="list-group-item ">首页</a> 
-					<a href="myInvoice" class="list-group-item active">我的发票</a> 
-					<a href="my_enterprise" class="list-group-item">查看企业</a> 
-					<a href="myRecord" class="list-group-item">交易记录</a> 
-					
+					<a href="#" class="list-group-item active">首页</a> <a
+						href="myEmployee" class="list-group-item">员工信息</a> <a
+						href="#" class="list-group-item">发票报销</a> <a
+						href="#" class="list-group-item">查询记录</a>
+
 				</div>
 			</div>
-			<div class="row col-10">
-		
-				<div class="mainpad col-12">
-					<h3>
-						添加成功
-					</h3>
-					<a href="myInvoice">返回</a>
-				</div>
-	
-			</div>
+			
+			
+						<div class="row col-10">
+					<div class="col-4 infopad">
+						<div>
+							<h4>欢迎，${enterprise.name }</h4>
+							
+							
+						</div>
+					</div></div>
+			
 		</div>
 	</div>
 </body>

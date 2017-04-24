@@ -1,33 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.buptsse.ibrs.dao.UserAndEnterpriseMapper" >
+<mapper namespace="com.buptsse.ibrs.dao.UserAndEnterpriseDao" >
   <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.UserAndEnterprise" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userid" property="userid" jdbcType="INTEGER" />
-    <result column="enterprise" property="enterprise" jdbcType="INTEGER" />
-    <result column="date" property="date" jdbcType="DATE" />
+    <id column="follow_id" property="followId" jdbcType="INTEGER" />
     <result column="if_leave" property="ifLeave" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime"/>
+    <result column="leave_time" property="leaveTime"/>
+    <association column="user_id" property="userId" javaType="com.buptsse.ibrs.model.UserInfo">
+    	<id column="user_info_id" property="id"/>
+    	<result column="truename" property="truename"/>
+    	<result column="id_number" property="idNumber"/>
+    	<result column="address" property="address"/>
+    	<result column="birthday" property="birthday"/>
+    	<result column="phone_number" property="phoneNumber"/>
+    </association>
+    <association property="enterpriseId" javaType="com.buptsse.ibrs.model.Enterprise">
+    	<id column="enterprise_id" property="id"/>
+    	<result column="login_time" property="loginTime"/>
+    	<result column="password" property="password"/>
+    	<result column="name" property="name"/>
+		<result column="address" property="address"/>
+		<result column="license_number" property="licenseNumber"/>
+		<result column="last_login_time" property="lastLoginTime"/>
+		
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, userid, enterprise, date, if_leave
   </sql>
-  
-  
-  
+
   
   <select id="getMyEnterprise" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from cn_user_enterprise
-    where userid = #{userId,jdbcType=INTEGER}
+    select * from follow f, user_info u, enterprise e where f.user_id = #{userId,jdbcType=INTEGER}
+    and u.user_info_id = #{userId} and e.enterprise_id = f.enterprise_id
   </select>
   
+    <select id="getMyEmployee" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from follow f, user_info u, enterprise e where f.enterprise_id = #{enterpriseId,jdbcType=INTEGER}
+    and u.user_info_id = f.user_id and e.enterprise_id = f.enterprise_id
+  </select>
+  
+    <select id="selectFollow" resultMap="BaseResultMap" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
+    select * from follow f, user_info u, enterprise e where f.user_id = #{userId.id,jdbcType=INTEGER}
+    and f.enterprise_id = #{userId.id} and e.enterprise_id = f.enterprise_id and u.user_info_id = f.user_id
+  </select>
+  
+  <insert id="insert" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
+    insert into follow (follow_id, user_id, enterprise_id, add_time, if_leave, leave_time)
+    values (#{followId,jdbcType=INTEGER}, #{userId.id,jdbcType=INTEGER}, #{enterpriseId.id,jdbcType=INTEGER}, #{addTime},
+      #{ifLeave}, #{leaveTime})
+  </insert>
   
   
   <select id="selectByEnterpriseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from cn_user_enterprise
+    from follow
     where enterprise = #{id,jdbcType=INTEGER}
   </select>
   
@@ -35,21 +63,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from cn_user_enterprise
+    from follow
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from cn_user_enterprise
+    delete from follow
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
-    insert into cn_user_enterprise (id, userid, enterprise, 
-      date, if_leave)
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{enterprise,jdbcType=INTEGER}, 
-      #{date,jdbcType=DATE}, #{ifLeave,jdbcType=INTEGER})
-  </insert>
   <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
-    insert into cn_user_enterprise
+    insert into follow
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -86,7 +108,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
-    update cn_user_enterprise
+    update follow
     <set >
       <if test="userid != null" >
         userid = #{userid,jdbcType=INTEGER},
@@ -104,7 +126,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
-    update cn_user_enterprise
+    update follow
     set userid = #{userid,jdbcType=INTEGER},
       enterprise = #{enterprise,jdbcType=INTEGER},
       date = #{date,jdbcType=DATE},

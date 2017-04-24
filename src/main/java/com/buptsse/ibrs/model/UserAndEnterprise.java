@@ -1,55 +1,70 @@
 package com.buptsse.ibrs.model;
 
-import java.util.Date;
+
 
 public class UserAndEnterprise {
-    private Integer id;
+    private Integer followId;
 
-    private Integer userid;
+    private UserInfo userId;
 
-    private Integer enterprise;
+    private Enterprise enterpriseId;
 
-    private Date date;
+    private String addTime;
 
-    private Integer ifLeave;
+    private boolean ifLeave;
+    
+    private String leaveTime;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public Integer getUserid() {
-        return userid;
-    }
+	public UserInfo getUserId() {
+		return userId;
+	}
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+	public Integer getFollowId() {
+		return followId;
+	}
 
-    public Integer getEnterprise() {
-        return enterprise;
-    }
+	public void setFollowId(Integer followId) {
+		this.followId = followId;
+	}
 
-    public void setEnterprise(Integer enterprise) {
-        this.enterprise = enterprise;
-    }
+	public void setUserId(UserInfo userId) {
+		this.userId = userId;
+	}
 
-    public Date getDate() {
-        return date;
-    }
+	public String getAddTime() {
+		return addTime;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public void setAddTime(String addTime) {
+		this.addTime = addTime;
+	}
 
-    public Integer getIfLeave() {
-        return ifLeave;
-    }
+	public Enterprise getEnterpriseId() {
+		return enterpriseId;
+	}
 
-    public void setIfLeave(Integer ifLeave) {
-        this.ifLeave = ifLeave;
-    }
+	public void setEnterpriseId(Enterprise enterpriseId) {
+		this.enterpriseId = enterpriseId;
+	}
+
+
+	public boolean isIfLeave() {
+		return ifLeave;
+	}
+
+	public void setIfLeave(boolean ifLeave) {
+		this.ifLeave = ifLeave;
+	}
+
+	public String getLeaveTime() {
+		return leaveTime;
+	}
+
+	public void setLeaveTime(String leaveTime) {
+		this.leaveTime = leaveTime;
+	}
+
+
 }

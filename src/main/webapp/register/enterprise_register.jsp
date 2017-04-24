@@ -29,13 +29,20 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-2 col-form-label">企业编号</label>
+				<label class="col-2 col-form-label">企业登录名</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="enterprise_number"
+					<input class="form-control" type="text" value="" name="login_name"
 						id="example-search-input"/>
 				</div>
 			</div>
 			
+			<div class="form-group row">
+				<label class="col-2 col-form-label">登录密码</label>
+				<div class="col-10">
+					<input class="form-control" type="text" value="" name="password"
+						id="example-search-input"/>
+				</div>
+			</div>
 			
 			<div class="form-group row">
 				<label class="col-2 col-form-label">企业地址</label>
@@ -81,14 +88,6 @@
 				</div>
 			</div>
 			
-			
-			<div class="form-group row">
-				<label class="col-2 col-form-label">邮箱</label>
-				<div class="col-10">
-					<input class="form-control" type="text" value="" name="certigier_email"
-						id="example-search-input"/>
-				</div>
-			</div>
 			
 			<div class="form-group row">
 				<label class="col-2 col-form-label">家庭住址</label>

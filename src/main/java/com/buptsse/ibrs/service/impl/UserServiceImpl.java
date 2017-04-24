@@ -7,23 +7,21 @@ import com.buptsse.ibrs.dao.UserDao;
 import com.buptsse.ibrs.model.User;
 import com.buptsse.ibrs.service.UserService;
 import com.buptsse.ibrs.model.UserInfo;
-import com.buptsse.ibrs.dao.UserInfoMapper;
+import com.buptsse.ibrs.dao.UserInfoDao;
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
 	@Autowired
-	UserInfoMapper userInfoDao;
+	UserInfoDao userInfoDao;
+	
+	@Override
 	public User getById(int userId) {
 		// TODO Auto-generated method stub
 		return userDao.selectByPrimaryKey(userId);
 	}
 
-	public User getByUsername(String username) {
-		// TODO Auto-generated method stub
-		return userDao.selectByUsername(username);
-	}
 
 	@Override
 	public void AddUser(User user) {
@@ -31,33 +29,33 @@ public class UserServiceImpl implements UserService {
 		userDao.insert(user);
 	}
 
-	@Override
-	public UserInfo getByPhoneNumber(String number) {
-		// TODO Auto-generated method stub
-		
-		return userInfoDao.selectByPhoneNumber(number);
-	}
 
 	@Override
-	public void SavaUserInfo(UserInfo user) {
+	public void SaveUserInfo(UserInfo user) {
 		// TODO Auto-generated method stub
 		userInfoDao.insert(user);
+		System.out.println("haha");
 		
 	}
 
 	@Override
-	public UserInfo getUserInfoById(Integer id) {
+	public User getByPhoneNumber(long phoneNumber) {
 		// TODO Auto-generated method stub
-		
-		return userInfoDao.selectByPrimaryKey(id);
+		return userDao.selectByPhoneNumber(phoneNumber);
 	}
 
+
 	@Override
-	public UserInfo getUserInfoByUsername(String username) {
+	public UserInfo getByIdnumber(String idNumber) {
 		// TODO Auto-generated method stub
-		User user  = userDao.selectByUsername(username);
-		
-		return userInfoDao.selectByPrimaryKey(user.getUserid());
+		return userInfoDao.selectByIdNumber(idNumber);
+	}
+
+
+	@Override
+	public void updateLoginTime(User user) {
+		// TODO Auto-generated method stub
+		userDao.updateLoginTime(user);
 	}
 
 }
