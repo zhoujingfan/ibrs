@@ -20,9 +20,9 @@
 		<form action="enterprise_main" class="form-signin" method="post">
         	<h4 class="text-center">企业登录</h4>
 			<label class="sr-only">登录名</label>
-			<input class="form-control form-margin" type="text" name="name" value="" placeholder="请输入登录名"/>
+			<input class="form-control form-margin" type="text" name="name" value="" required="required" placeholder="请输入登录名"/>
 			<label class="sr-only">密码</label>
-			<input class="form-control form-margin" type="password" name="password" value="" placeholder="请输入密码"/>
+			<input class="form-control form-margin" type="password" name="password" required="required" value="" placeholder="请输入密码"/>
 			<div>
 				<input class="btn btn-primary  btn-block form-margin" type="submit" value="登录" />
 				<p class="form-margin">

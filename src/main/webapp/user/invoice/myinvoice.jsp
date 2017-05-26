@@ -21,18 +21,18 @@
 		<div class="row">
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
-					<a href="main" class="list-group-item ">首页</a> 
-					<a href="myInvoice" class="list-group-item active">我的发票</a> 
-					<a href="my_enterprise" class="list-group-item">查看企业</a> 
-					<a href="myRecord" class="list-group-item">交易记录</a> 
+					<a href="main" class="list-group-item ">首页</a> <a href="myInvoice"
+						class="list-group-item active">我的发票</a> <a href="my_enterprise"
+						class="list-group-item">查看企业</a> 
 				</div>
 			</div>
 			<div class="row col-10">
 
 				<div class="mainpad col-12">
 					<div class=" padding-top-15 padding-bottom-10">
-					
-								<a href="add_invoice">添加发票</a>
+
+						<a href="add_invoice">添加单张发票</a>
+						<a href="add_batch">批量添加</a>
 					</div>
 				</div>
 				<div class="mainpad col-12">
@@ -51,18 +51,18 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${invoiceExpense }" var="invoiceExpense">
-							<tr>
-								<td>${invoiceExpense.invoice.invoiceId }</td>
-								<td>${invoiceExpense.uploadTime }</td>
-								<td>${invoiceExpense.uploadEnterprise.name }</td>
-								<td>${invoiceExpense.invoice.paySum }</td>
-								<td>${invoiceExpense.massage }</td>
-							</tr>
+							<c:forEach items="${invoiceExpense }" var="invoiceExpense">
+								<tr>
+									<td>${invoiceExpense.invoice.invoiceId }</td>
+									<td>${invoiceExpense.uploadTime }</td>
+									<td>${invoiceExpense.uploadEnterprise.name }</td>
+									<td>${invoiceExpense.invoice.paySum }</td>
+									<td>${invoiceExpense.massage }</td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					</div>
+				</div>
 
 
 			</div>

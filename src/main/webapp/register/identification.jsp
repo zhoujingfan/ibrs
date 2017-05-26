@@ -5,12 +5,12 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../common/css/bootstrap.css">
-<link rel="stylesheet" href="../common/css/ibrs.css">
-<script src="../common/js/jquery-3.1.1.js"></script>
+<link rel="stylesheet" href="common/css/bootstrap.css">
+<link rel="stylesheet" href="common/css/ibrs.css">
+<script src="common/js/jquery-3.1.1.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="../common/js/bootstrap.js"></script>
+<script src="common/js/bootstrap.js"></script>
 <title>完成实名认证</title>
 </head>
 
@@ -24,14 +24,14 @@
 			<div class="form-group row">
 				<label class="col-3 col-form-label">真实姓名</label>
 				<div class="col-9">
-					<input class="form-control" type="text" value="" name="truename"
+					<input class="form-control" type="text" value="" name="truename" required="required"
 						id="example-text-input"/>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-3 col-form-label">身份证号码</label>
 				<div class="col-9">
-					<input class="form-control" type="text" value="" name="idNumber"
+					<input class="form-control" type="text" value="" name="idNumber" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
@@ -40,7 +40,7 @@
 			<div class="form-group row">
 				<label class="col-3 col-form-label">常住地址</label>
 				<div class="col-9">
-					<input class="form-control" type="text" value="" name="address"
+					<input class="form-control" type="text" value="" name="address" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 			<div class="form-group row">
 				<label class="col-3 col-form-label">生日</label>
 				<div class="col-9">
-					<input class="form-control" type="text" value="" name="birthday"
+					<input class="form-control" type="text" value="" name="birthday" required="required"
 						id="example-search-input">
 				</div>
 			</div>

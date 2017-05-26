@@ -26,8 +26,7 @@
 						class="list-group-item">我的发票</a> 
 					<a href="my_enterprise"
 						class="list-group-item">查看企业</a> 
-					<a href="myRecord"
-						class="list-group-item">交易记录</a>
+					
 						
 				</div>
 			</div>
@@ -48,25 +47,26 @@
 	
 					<div class="col-4 infopad">
 						<div>
-							<span>本月报销信息：</span>
+							<span>报销信息预览：</span>
 						</div>
 	
 						<div class="padding-top-15">
-							<span>	报销数量：2</span>
+							<span>	报销数量：${expensedNum }</span>
 						</div>
 						<div class="padding-top-15">
-							<span>总金额：588元</span>
+							<span>账户余额：${expensedSum }元</span>
+							<a  class="form-register" href="tixian">提现</a>
 						</div>
 					</div>
 					
 					
 					<div class="col-4 infopad">
 						<div>
-							<span>我关联的企业：2个</span>
+							<span>我关联的企业：${enterpriseSum } 个</span>
 						</div>
 	
 						<div class="padding-top-15">
-							<span><a href="#">管理我的企业</a></span>
+							<span><a href="my_enterprise">管理我的企业</a></span>
 						</div>
 					</div>
 			

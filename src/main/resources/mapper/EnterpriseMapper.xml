@@ -30,6 +30,11 @@
 		select * from enterprise where license_number = #{licenseNumber}
 	</select>
 
+
+
+	<select id="searchEnterpriseByName" resultMap="BaseResultMap" parameterType="String">
+		select * from enterprise where name like #{name}
+	</select>
 	<select id="selectByEnterpriseLoginName" resultMap="BaseResultMap" parameterType="String">
 		select * from enterprise where login_name = #{name}
 	</select>

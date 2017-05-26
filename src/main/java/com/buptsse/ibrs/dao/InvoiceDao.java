@@ -9,9 +9,12 @@ public interface InvoiceDao {
 
     int insertSelective(Invoice record);
 
-    Invoice selectByPrimaryKey(Integer id);
-
+    Invoice selectByPrimaryKey(long id);
+    
+    boolean selectIfExistById(long id);
+    
     int updateByPrimaryKeySelective(Invoice record);
 
     int updateByPrimaryKey(Invoice record);
+    
 }

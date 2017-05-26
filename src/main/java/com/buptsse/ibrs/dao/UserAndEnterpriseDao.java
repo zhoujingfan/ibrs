@@ -19,9 +19,15 @@ public interface UserAndEnterpriseDao {
     
     List<UserAndEnterprise> getMyEnterprise(Integer userId);
     
+    int getMyEnterpriseNum(Integer userId);
+    
+    int getMyEmployeeNum(Integer id);
+    
     List<UserAndEnterprise> getMyEmployee(Integer enterpriseId);
     
     int updateByPrimaryKeySelective(UserAndEnterprise record);
 
+    int deleteFollow(Integer id);
+    
     int updateByPrimaryKey(UserAndEnterprise record);
 }

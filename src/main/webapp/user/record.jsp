@@ -23,8 +23,7 @@
 				<div class="list-group">
 					<a href="main" class="list-group-item">首页</a> <a href="myInvoice"
 						class="list-group-item">我的发票</a> <a href="my_enterprise"
-						class="list-group-item">查看企业</a> <a href="myRecord"
-						class="list-group-item active">交易记录</a> 
+						class="list-group-item">查看企业</a>  
 				</div>
 			</div>
 			<div class="row col-10">

@@ -19,24 +19,56 @@ public class InvoiceServiceImpl implements com.buptsse.ibrs.service.InvoiceServi
 	InvoiceDao invoiceDao;
 	@Autowired
 	InvoiceExpenseDao invoiceUploadDao;
-	@Override
+
 	public void addInvoice(Invoice invoice) {
 		// TODO Auto-generated method stub
 
 	}
+
 	public void addUploadInvoice(InvoiceExpense invoiceUpload) {
 		// TODO Auto-generated method stub
-		invoiceDao.insert(invoiceUpload.getInvoice());
-		invoiceUploadDao.insert(invoiceUpload);
+		if (!invoiceDao.selectIfExistById(invoiceUpload.getInvoice().getInvoiceId())) {
+			invoiceDao.insert(invoiceUpload.getInvoice());
+		}
+		if (!invoiceUploadDao.ifInvoiceExpenseExist(invoiceUpload)) {
+			invoiceUploadDao.insert(invoiceUpload);
+		}
 	}
+
 	public List<InvoiceExpense> getAllByUserInfo(long id) {
 		// TODO Auto-generated method stub
 		return invoiceUploadDao.selectAllByUserInfoId(id);
 	}
-	@Override
+
 	public List<InvoiceExpense> getAllByEnterprise(Enterprise enterprise) {
 		// TODO Auto-generated method stub
 		return invoiceUploadDao.selectAllByEnterprise(enterprise);
 	}
+
+	@Override
+	public int getExpenseNum(Integer userId) {
+		// TODO Auto-generated method stub
+		return invoiceUploadDao.selectExpenseNum(userId);
+	}
+
+	@Override
+	public int getExpenseSum(Integer userId) {
+		// TODO Auto-generated method stub
+		return invoiceUploadDao.selectExpenseSum(userId);
+	}
+
+	@Override
+	public int getNotExpensedByEnterprise(Integer id) {
+		// TODO Auto-generated method stub
+		return invoiceUploadDao.selectSumNotExpenseByEnterprise(id);
+	}
+
+	@Override
+	public InvoiceExpense getById(long id) {
+		// TODO Auto-generated method stub
+		return invoiceUploadDao.selectByPrimaryKey(id);
+	}
+	
+
 
 }

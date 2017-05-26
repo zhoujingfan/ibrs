@@ -24,4 +24,6 @@ public interface EnterpriseDao {
     int updateByPrimaryKey(Enterprise record);
     
     List<Enterprise> selectEnterpriseByUserId(Integer userId);
+    
+    List<Enterprise> searchEnterpriseByName(String name);
 }

@@ -25,9 +25,9 @@ public class RegisterController {
 	 * 重定向到个人用户注册界面
 	 * @return
 	 */
-	@RequestMapping(value={"login/to_register"})
+	@RequestMapping(value={"to_register"})
 	private String ToRegister(){
-		return "redirect:../register/user_register.jsp";
+		return "register/user_register";
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class RegisterController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("register/register")
+	@RequestMapping("register")
 	private String Register(long phoneNumber, String regi_password, HttpSession session){
 		User user = userService.getByPhoneNumber(phoneNumber);
 		if(user != null){
@@ -50,9 +50,9 @@ public class RegisterController {
 			userService.AddUser(user);
 			session.setAttribute("user", user);
 			System.out.println("注册成功");
-			return "identification";
+			return "register/identification";
 		}
-		return "redirect:../login/login.jsp";
+		return "/login/login";
 	}
 	/**
 	 * 实名认证
@@ -63,7 +63,7 @@ public class RegisterController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value={"register/identification"})
+	@RequestMapping(value={"identification"})
 	private String Identification(
 			String truename,
 			String idNumber,
@@ -71,21 +71,18 @@ public class RegisterController {
 			String birthday,
 			HttpSession session
 			){
-		
+
+		User user = (User) session.getAttribute("user");
+		user = userService.getByPhoneNumber(user.getPhoneNumber());
 		UserInfo userInfo = new UserInfo();
-		if(userService.getByIdnumber(idNumber) != null){
-			userInfo = userService.getByIdnumber(idNumber);
-			User user = (User) session.getAttribute("user");
-			user.setUserInfo(userInfo);
-			return "redirect:../login/login.jsp";
-		}
 		userInfo.setTruename(truename);
 		userInfo.setIdNumber(idNumber);
 		userInfo.setAddress(address);
 		userInfo.setBirthday(birthday);
-		
-		userService.SaveUserInfo(userInfo);
-		return "redirect:../login/login.jsp";
+		userInfo.setPhoneNumber(user.getPhoneNumber());
+		user.setUserInfo(userInfo);
+		userService.saveIdentification(user);
+		return "login/login";
 	}
 	
 	/**
@@ -94,7 +91,7 @@ public class RegisterController {
 	 */
 	@RequestMapping(value={"enterprise"})
 	private String Enterprise(){
-		return "redirect:../register/enterprise_register.jsp";
+		return "register/enterprise_register";
 	}
 	/**
 	 * 企业注册
@@ -110,7 +107,7 @@ public class RegisterController {
 	 * @param certigier_address
 	 * @return
 	 */
-	@RequestMapping("register/enterprise_register")
+	@RequestMapping(value={"enterprise_register"})
 	private String EnterpriseRegister(String enterprise_name,
 			String login_name,
 			String password,
@@ -148,6 +145,6 @@ public class RegisterController {
 			enterpriseService.saveEnterprise(enterprise);
 		}
 		
-		return "redirect:../index.jsp";
+		return "index";
 	}
 }

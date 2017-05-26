@@ -13,16 +13,13 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link active disable">您好,</a>
 				</li>
-				<li class="nav-item"><a class="nav-link active disable">${username }</a>
+				<li class="nav-item"><b><a class="nav-link active disable" href="myProfile">${username }</a></b>
 				</li>
 			</ul>
 			<ul class="navbar-nav navbar-right">
 
 				<li class="nav-item">
-					<a class="nav-link active" href="#">设置</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">退出</a>
+					<a class="nav-link active" href="exit">退出</a>
 				</li>
 			</ul>
 		</div>

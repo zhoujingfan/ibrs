@@ -8,6 +8,7 @@
     <result column="birthday" property="birthday" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="phone_number" property="phoneNumber"/>
+    <result column="money" property="money"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, truename, id_number, birthday, address, phone_number
@@ -24,6 +25,12 @@
     from user_info
     where id_number = #{idNumber}
   </select>
+   
+  <select id="selectById" resultMap="BaseResultMap" parameterType="Integer" >
+    select *
+    from user_info
+    where user_info_id = #{id}
+  </select>
 
    
   <select id="selectByPhoneNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -39,9 +46,9 @@
   </delete>
   <insert id="insert" parameterType="com.buptsse.ibrs.model.UserInfo" >
     insert into user_info (user_info_id, truename, id_number, 
-      birthday, address)
+      birthday, address, phone_number)
     values (#{id,jdbcType=INTEGER},#{truename,jdbcType=VARCHAR}, #{idNumber},
-      #{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR})
+      #{birthday}, #{address,jdbcType=VARCHAR},#{phoneNumber})
   </insert>
   <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.UserInfo" >
     insert into cn_userinfo
@@ -135,5 +142,14 @@
       email = #{email,jdbcType=VARCHAR},
       idcardnumber = #{idcardnumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <update id="updateMoney" parameterType="com.buptsse.ibrs.model.UserInfo" >
+    update user_info set money = #{money}  where user_info_id = #{id,jdbcType=INTEGER}
+  </update>
+  
+ 
+  <update id="updateUserInfo" parameterType="com.buptsse.ibrs.model.UserInfo" >
+    update user_info set address = #{address}, phone_number = #{phoneNumber}  where user_info_id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -19,10 +19,7 @@
 			<ul class="navbar-nav navbar-right">
 
 				<li class="nav-item">
-					<a class="nav-link active" href="#">设置</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">退出</a>
+					<a class="nav-link active" href="exit">退出</a>
 				</li>
 			</ul>
 		</div>

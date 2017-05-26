@@ -20,22 +20,24 @@
 		<div class="row">
 			<div class="col-2 bd-sidebar" id="sidebar">
 				<div class="list-group">
-					<a href="#" class="list-group-item active">首页</a> <a
+					<a href="enterprise_show_main" class="list-group-item active">首页</a> <a
 						href="myEmployee" class="list-group-item">员工信息</a> <a
-						href="#" class="list-group-item">发票报销</a> <a
-						href="#" class="list-group-item">查询记录</a>
+						href="enterprise_invoice" class="list-group-item">发票报销</a> <a
+						href="#" class="list-group-item">数据统计</a>
 
 				</div>
 			</div>
 			
 			
-						<div class="row col-10">
-					<div class="col-4 infopad">
+						<div class="col-10">
+					<div class="infopad">
 						<div>
-							<h4>欢迎，${enterprise.name }</h4>
-							
-							
+							<h4>欢迎，${enterprise.name }</h4>							
 						</div>
+							<div>
+							<span>员工数量：${myEmployeeNum }</span>				
+						</div>
+							<span>未报销发票数量：${notExpenseNum }</span>	
 					</div></div>
 			
 		</div>

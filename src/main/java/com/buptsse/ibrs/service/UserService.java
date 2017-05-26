@@ -17,6 +17,7 @@ public interface UserService {
 	 */
 
 	UserInfo getByIdnumber(String idNumber);
+	
 	User getByPhoneNumber(long phoneNumber);
 	
 	void AddUser(User user);
@@ -24,5 +25,12 @@ public interface UserService {
 	void SaveUserInfo(UserInfo userInfo);
 	
 	void updateLoginTime(User user);
+	
+	void saveIdentification(User user);
+	
+	void updateUser(User user);
+	
+	UserInfo getById(Integer id);
+	void updateMoney(User user);
 
 }

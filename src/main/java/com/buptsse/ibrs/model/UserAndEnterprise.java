@@ -11,11 +11,9 @@ public class UserAndEnterprise {
 
     private String addTime;
 
-    private boolean ifLeave;
+    private String ifLeave;
     
     private String leaveTime;
-
-
 
 	public UserInfo getUserId() {
 		return userId;
@@ -50,11 +48,11 @@ public class UserAndEnterprise {
 	}
 
 
-	public boolean isIfLeave() {
+	public String getIfLeave() {
 		return ifLeave;
 	}
 
-	public void setIfLeave(boolean ifLeave) {
+	public void setIfLeave(String ifLeave) {
 		this.ifLeave = ifLeave;
 	}
 

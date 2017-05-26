@@ -3,7 +3,7 @@
 <mapper namespace="com.buptsse.ibrs.dao.UserAndEnterpriseDao" >
   <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.UserAndEnterprise" >
     <id column="follow_id" property="followId" jdbcType="INTEGER" />
-    <result column="if_leave" property="ifLeave" jdbcType="INTEGER" />
+    <result column="if_leave" property="ifLeave"/>
     <result column="add_time" property="addTime"/>
     <result column="leave_time" property="leaveTime"/>
     <association column="user_id" property="userId" javaType="com.buptsse.ibrs.model.UserInfo">
@@ -13,6 +13,7 @@
     	<result column="address" property="address"/>
     	<result column="birthday" property="birthday"/>
     	<result column="phone_number" property="phoneNumber"/>
+    	<result column="money" property="money"/>
     </association>
     <association property="enterpriseId" javaType="com.buptsse.ibrs.model.Enterprise">
     	<id column="enterprise_id" property="id"/>
@@ -35,6 +36,16 @@
     and u.user_info_id = #{userId} and e.enterprise_id = f.enterprise_id
   </select>
   
+  
+  
+  <select id="getMyEnterpriseNum" resultType="int" parameterType="java.lang.Integer" >
+    select count(*) from follow f  where f.user_id = #{userId} 
+  </select>
+  
+   <select id="getMyEmployeeNum" resultType="int" parameterType="java.lang.Integer" >
+    select count(*) from follow f  where f.enterprise_id = #{userId} 
+  </select>
+  
     <select id="getMyEmployee" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select * from follow f, user_info u, enterprise e where f.enterprise_id = #{enterpriseId,jdbcType=INTEGER}
     and u.user_info_id = f.user_id and e.enterprise_id = f.enterprise_id
@@ -42,7 +53,7 @@
   
     <select id="selectFollow" resultMap="BaseResultMap" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
     select * from follow f, user_info u, enterprise e where f.user_id = #{userId.id,jdbcType=INTEGER}
-    and f.enterprise_id = #{userId.id} and e.enterprise_id = f.enterprise_id and u.user_info_id = f.user_id
+    and f.enterprise_id = #{enterpriseId.id} and e.enterprise_id = f.enterprise_id and u.user_info_id = f.user_id
   </select>
   
   <insert id="insert" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
@@ -69,6 +80,11 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from follow
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  
+  <delete id="deleteFollow" parameterType="Integer">
+  delete from follow where follow_id = #{id}
   </delete>
   <insert id="insertSelective" parameterType="com.buptsse.ibrs.model.UserAndEnterprise" >
     insert into follow
@@ -103,7 +119,7 @@
         #{date,jdbcType=DATE},
       </if>
       <if test="ifLeave != null" >
-        #{ifLeave,jdbcType=INTEGER},
+        #{ifLeave},
       </if>
     </trim>
   </insert>
@@ -120,7 +136,7 @@
         date = #{date,jdbcType=DATE},
       </if>
       <if test="ifLeave != null" >
-        if_leave = #{ifLeave,jdbcType=INTEGER},
+        if_leave = #{ifLeave},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -130,7 +146,7 @@
     set userid = #{userid,jdbcType=INTEGER},
       enterprise = #{enterprise,jdbcType=INTEGER},
       date = #{date,jdbcType=DATE},
-      if_leave = #{ifLeave,jdbcType=INTEGER}
+      if_leave = #{ifLeave}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

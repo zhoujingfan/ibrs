@@ -2,27 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.buptsse.ibrs.dao.InvoiceDao" >
   <resultMap id="BaseResultMap" type="com.buptsse.ibrs.model.Invoice" >
-    <id column="invoice_id" property="invoiceId" jdbcType="INTEGER" />
-    <result column="number" property="number" jdbcType="INTEGER" />
-    <result column="password" property="password" jdbcType="INTEGER"/>
-    <result column="pay_enterprise" property="payEnterprise" jdbcType="VARCHAR" />
-    <result column="tax_number" property="taxNumber" jdbcType="VARCHAR" />
-    <result column="pay_data" property="payData" jdbcType="VARCHAR" />
-    <result column="payee" property="payee" jdbcType="VARCHAR" />
-    <result column="payer" property="payer" jdbcType="VARCHAR" />
-    <result column="details" property="details" jdbcType="VARCHAR" />
-    <result column="pay_sum" property="paySum" jdbcType="INTEGER" />
+    <id column="invoice_id" property="invoiceId" />
+    <result column="number" property="number" />
+    <result column="tax_number" property="taxNumber" />
+    <result column="password" property="password"/>
+    <result column="pay_enterprise" property="payEnterprise" />
+    <result column="pay_date" property="payData"  />
+    <result column="payee" property="payee"/>
+    <result column="payer" property="payer"  />
+    <result column="details" property="details"  />
+    <result column="pay_sum" property="paySum" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, invoice_id, invoice_number, password, pay_enterprise, tax_number, cn_invoicecol, pay_data, 
+   invoice_id, number, password, pay_enterprise, tax_number, cn_invoicecol, pay_data, 
     payee, payer, details, pay_sum
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from cn_invoice
-    where id = #{id,jdbcType=INTEGER}
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select * from invoice
+    where invoice_id = #{id}
   </select>
+  
+    <select id="selectIfExistById" resultType="boolean" >
+    select count(*) from invoice where invoice_id = #{id}
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cn_invoice
     where id = #{id,jdbcType=INTEGER}

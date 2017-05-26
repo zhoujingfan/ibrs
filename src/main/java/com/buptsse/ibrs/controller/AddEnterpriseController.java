@@ -1,5 +1,6 @@
 package com.buptsse.ibrs.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,15 @@ public class AddEnterpriseController {
 	 * @param session
 	 * @return
 	 */
+	
+	@RequestMapping(value={"search"})
+	private ModelAndView SearchEnterprise(HttpSession session, String enterpriseName){
+		List<Enterprise> enterprises = enterpriseService.searchEnterprise("%"+enterpriseName+"%");
+		ModelAndView model = new ModelAndView();
+		model.addObject("enterprises", enterprises);
+		model.setViewName("user/enterprise/search");
+		return model;
+	}
 	@RequestMapping(value = {"my_enterprise"})
 	private ModelAndView My_Enterprise(HttpSession session){
 		User loginUser = (User) session.getAttribute("user");

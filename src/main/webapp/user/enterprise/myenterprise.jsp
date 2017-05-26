@@ -23,8 +23,7 @@
 				<div class="list-group">
 					<a href="main" class="list-group-item ">首页</a> <a
 						href="myInvoice" class="list-group-item">我的发票</a> <a
-						href="my_enterprise" class="list-group-item active">查看企业</a> <a
-						href="myRecord" class="list-group-item">交易记录</a>
+						href="my_enterprise" class="list-group-item active">查看企业</a> <
 				</div>
 			</div>
 			<div class="row col-10">
@@ -45,7 +44,7 @@
 							<span>关联时间：${enterprises.addTime }</span>
 						</div>
 						<div class="padding-top-15">
-							<span><a href="#">管理</a></span>
+							<span><a href="deleteEnterprise?name=${enterprises.enterpriseId.name }">删除</a></span>
 						</div>
 					</div>
 

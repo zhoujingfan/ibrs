@@ -13,8 +13,15 @@ public interface InvoiceService {
 	
 	void addUploadInvoice(InvoiceExpense invoiceUpload);
 
+	InvoiceExpense getById(long id);
+	
 	List<InvoiceExpense> getAllByUserInfo(long id);
 	
 	List<InvoiceExpense> getAllByEnterprise(Enterprise enterprise);
 	
+	int getExpenseNum(Integer userId);
+	
+	int getExpenseSum(Integer userId);
+	
+	int getNotExpensedByEnterprise(Integer id);
 }

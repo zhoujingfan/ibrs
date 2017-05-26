@@ -15,6 +15,7 @@
     	<result column="address" property="address"/>
     	<result column="birthday" property="birthday"/>
     	<result column="phone_number" property="phoneNumber"/>
+    	<result column="money" property="money"/> 
     </association>
   </resultMap>
   <sql id="Base_Column_List" >
@@ -22,8 +23,13 @@
   </sql>
   
   <select id="selectByPhoneNumber" resultMap="BaseResultMap" parameterType="long">
-  	select * from user u, user_info d where u.user_id = d.user_info_id and u.phone_number = #{phoneNumber} 	
+  	select * from user u where u.phone_number = #{phoneNumber} 	
   </select>
+  
+  <select id="getByPhoneNumber" resultMap="BaseResultMap" parameterType="long">
+  	select * from user u , user_info d where u.phone_number = #{phoneNumber} and u.user_id = d.user_info_id
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -99,8 +105,21 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
+
+ 
+   <update id="updateUserInfoId" parameterType="com.buptsse.ibrs.model.User" >
+    update user set user_id = #{userInfo.id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
  
   <update id="updateLoginTime" parameterType="com.buptsse.ibrs.model.User" >
     update user set last_login_time = #{lastLoginTime} where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+ 
+  <update id="updateUser" parameterType="com.buptsse.ibrs.model.User" >
+    update user set phone_number = #{phoneNumber}, email = #{email}  where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

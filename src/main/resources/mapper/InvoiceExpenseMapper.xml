@@ -39,12 +39,10 @@
     id, invoice_id, upload_user, upload_date, upload_enterprise, if_right, if_expense, 
     if_repetition
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.buptsse.ibrs.model.InvoiceExpenseKey" >
-    select 
-    <include refid="Base_Column_List" />
-    from cn_invoice_expense
-    where id = #{id,jdbcType=INTEGER}
-      and invoice_id = #{invoiceId,jdbcType=VARCHAR}
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select *
+    from invoice_upload
+    where upload_id = #{key}
   </select>
   
   <select id="selectAllByUserInfoId" resultMap="BaseResultMap" parameterType="long">
@@ -54,9 +52,44 @@
   
    <select id="selectAllByUserEnterprise" resultMap="BaseResultMap" parameterType="com.buptsse.ibrs.model.Enterprise">
   	select * from invoice i, invoice_upload n, user_info u, enterprise e 
-  	where n.upload_user_id = n.upload_user_id and i.invoice_id = n.invoice_id and e.enterprise_id = #{id};
+  	where n.upload_user_id = u.user_info_id and i.invoice_id = n.invoice_id and e.enterprise_id = #{id};
   </select>
   
+  
+   <select id="selectNotExpenseByEnterprise" resultMap="BaseResultMap" parameterType="com.buptsse.ibrs.model.Enterprise">
+  	select * from invoice i, invoice_upload n, user_info u, enterprise e 
+  	where n.upload_user_id = u.user_info_id and i.invoice_id = n.invoice_id and e.enterprise_id = #{id} and massage = "未报销";
+  </select>
+  
+  
+     <select id="selectExpenseByEnterprise" resultMap="BaseResultMap" parameterType="com.buptsse.ibrs.model.Enterprise">
+  	select * from invoice i, invoice_upload n, user_info u, enterprise e 
+  	where n.upload_user_id = u.user_info_id and i.invoice_id = n.invoice_id and e.enterprise_id = #{id} and massage = "已报销";
+  </select>
+  
+  
+  
+  
+   <select id="ifInvoiceExpenseExist" resultType="boolean" parameterType="com.buptsse.ibrs.model.InvoiceExpense">
+  	select count(*) from invoice_upload where upload_user_id = #{uploadUser.id} and invoice_id = #{invoice.invoiceId}
+  </select>
+  
+  
+  
+   <select id="selectExpenseNum" resultType="int" parameterType="Integer">
+  	select count(*) from invoice_upload where upload_user_id = #{userInfoId} and massage = "已报销"
+  </select>
+  
+  
+   <select id="selectExpenseSum" resultType="int" parameterType="Integer">
+  	select case when sum(pay_sum) is null then 0 else sum(pay_sum) end 
+  	from invoice_upload u, invoice i where u.upload_user_id = #{userInfoId} and u.massage = "已报销" and i.invoice_id = u.invoice_id
+  	
+  </select>
+     <select id="selectSumNotExpenseByEnterprise" resultType="int" parameterType="Integer">
+  	select count(*) from invoice_upload u, invoice i where u.upload_enterprise_id = #{id} and u.massage = "未报销" and i.invoice_id = u.invoice_id
+  	
+  </select>
   
   <delete id="deleteByPrimaryKey" parameterType="com.buptsse.ibrs.model.InvoiceExpenseKey" >
     delete from cn_invoice_expense
@@ -158,5 +191,17 @@
       if_repetition = #{ifRepetition}
     where id = #{id,jdbcType=INTEGER}
       and invoice_id = #{invoiceId}
+  </update>
+  
+  <update id="updateMessage" parameterType="com.buptsse.ibrs.model.InvoiceExpense" >
+    update invoice_upload
+    set massage = "已报销" 
+    where upload_id = #{uploadId,jdbcType=INTEGER}
+  </update>
+  
+    <update id="updateMessageNotPass" parameterType="com.buptsse.ibrs.model.InvoiceExpense" >
+    update invoice_upload
+    set massage = "不通过" 
+    where upload_id = #{uploadId,jdbcType=INTEGER}
   </update>
 </mapper>

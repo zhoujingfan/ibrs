@@ -5,12 +5,12 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../common/css/bootstrap.css">
-<link rel="stylesheet" href="../common/css/ibrs.css">
-<script src="../common/js/jquery-3.1.1.js"></script>
+<link rel="stylesheet" href="common/css/bootstrap.css">
+<link rel="stylesheet" href="common/css/ibrs.css">
+<script src="common/js/jquery-3.1.1.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="../common/js/bootstrap.js"></script>
+<script src="common/js/bootstrap.js"></script>
 <title>企业用户注册</title>
 </head>
 
@@ -24,14 +24,14 @@
 			<div class="form-group row">
 				<label class="col-2 col-form-label">企业名称</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="enterprise_name"
+					<input class="form-control" type="text" value="" name="enterprise_name" required="required"
 						id="example-text-input"/>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-2 col-form-label">企业登录名</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="login_name"
+					<input class="form-control" type="text" value="" name="login_name" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 			<div class="form-group row">
 				<label class="col-2 col-form-label">登录密码</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="password"
+					<input class="form-control" type="text" value="" name="password" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 			<div class="form-group row">
 				<label class="col-2 col-form-label">企业地址</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="enterprise_address"
+					<input class="form-control" type="text" value="" name="enterprise_address" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 			<div class="form-group row">
 				<label class="col-2 col-form-label">营业执照号码</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="license_number"
+					<input class="form-control" type="text" value="" name="license_number" required="required"
 						id="example-search-input">
 				</div>
 			</div>
@@ -67,14 +67,14 @@
 			<div class="form-group row">
 				<label class="col-2 col-form-label">姓名</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="certigier_name"
+					<input class="form-control" type="text" value="" name="certigier_name" required="required"
 						id="example-text-input"/>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-2 col-form-label">身份证号码</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="certigier_id_number"
+					<input class="form-control" type="text" value="" name="certigier_id_number" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 			<div class="form-group row">
 				<label class="col-2 col-form-label">手机号码</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="certigier_phone_number"
+					<input class="form-control" type="text" value="" name="certigier_phone_number" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 			<div class="form-group row">
 				<label class="col-2 col-form-label">家庭住址</label>
 				<div class="col-10">
-					<input class="form-control" type="text" value="" name="certigier_address"
+					<input class="form-control" type="text" value="" name="certigier_address" required="required"
 						id="example-search-input"/>
 				</div>
 			</div>
